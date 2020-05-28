@@ -96,7 +96,7 @@ class song_detail_new(song_detail_old):
         """指定索引位置的歌曲的单个别名"""
         return self.path / f'[{i1}]/alias/[{i2}]'
 
-    def alias_iter(self, i1: int = 0) -> alias:
+    def alias_iter(self, i1: int = 0) -> Generator[dict, Any, None]:
         """迭代指定索引位置的歌曲的所有别名"""
         return (self.artist(i1, i2) for i2 in range(len(self.path / f'[{i1}]/artists')))
 
