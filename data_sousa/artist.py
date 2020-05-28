@@ -9,7 +9,7 @@ class artist_old:
 
     def __init__(self, data: dict):
         self.more = data.get('more')
-        self.hot_songs = data.get('hotSongs')
+        self.hot = data.get('hotSongs')
         self.path = key_path(data, point='artist')
         self.len = len(self.path)
 
@@ -28,12 +28,16 @@ class artist_old:
         return self.path / 'img1v1Url'
 
     def music_len(self) -> int:
-        """歌手的全部曲目"""
+        """歌手全部曲目数"""
         return self.path / 'musicSize'
 
     def album_len(self) -> int:
-        """歌手的全部专辑"""
+        """歌手全部专辑数"""
         return self.path / 'albumSize'
+
+    def mv_len(self) -> int:
+        """歌手全部mv数"""
+        return self.path / 'mvSize'
 
 
 
