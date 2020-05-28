@@ -83,13 +83,6 @@ class crypto_parm:
         return {'params': self.AES_encrypto(ciphertext, self.AES_key).decode('utf-8'), 'enSecKey': self.RSA_encrypto()}
 
 
-if __name__ == '__main__':
-    b = crypto_parm()
-    p = b(**{'dwad':'ww'})
-    c = b.AES_decrypto(p.get('params'), b.AES_key)
-    print(b.AES_decrypto(c, b.nonce))
-
-
 def try_get_data(req: req_url, url: str) -> dict:
     req_obj = code = 0
     while code != 200:
