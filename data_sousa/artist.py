@@ -1,6 +1,5 @@
 from data_sousa import key_path
-from typing import Union, NewType
-
+from typing import Union, NewType, Generator, Any
 
 Url = NewType('Url', str)
 
@@ -13,10 +12,10 @@ class artist_old:
         self.path = key_path(data, point='artist')
         self.len = len(self.path)
 
-    def alias(self, i: int = 0):
+    def alias(self, i: int = 0) -> str:
         return self.path / f'alias/[{i}]'
 
-    def alias_iter(self):
+    def alias_iter(self) -> Generator[str, Any, None]:
         return (self.alias(i) for i in range(self.len))
 
     def picUrl(self) -> Url:
