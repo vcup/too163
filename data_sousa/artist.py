@@ -1,5 +1,8 @@
 from data_sousa import key_path
-from typing import Union
+from typing import Union, NewType
+
+
+Url = NewType('Url', str)
 
 
 class artist_old:
@@ -16,6 +19,22 @@ class artist_old:
 
     def alias_iter(self):
         return (self.alias(i) for i in range(self.len))
+
+    def picUrl(self) -> Url:
+        return self.path / 'picUrl'
+
+    def img(self) -> Url:
+        """头像的原版尺寸"""
+        return self.path / 'img1v1Url'
+
+    def music_len(self) -> int:
+        """歌手的全部曲目"""
+        return self.path / 'musicSize'
+
+    def album_len(self) -> int:
+        """歌手的全部专辑"""
+        return self.path / 'albumSize'
+
 
 
 def artist(data: dict) -> Union[artist_old]:
