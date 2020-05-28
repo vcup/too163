@@ -101,8 +101,10 @@ def resource(sid: int, limit: int, offset: int = 0):
 
 
 def search(search_key: str, search_type: int, limit: int, offset: int = 0):
-    req = req_url({'s': search_key, 'type': search_type, 'limit': limit, 'offset': limit * offset})
-    return try_get_data(req, 'https://music.163.com/api/search/get/web')
+    # req = req_url({'s': search_key, 'type': search_type, 'limit': limit, 'offset': limit * offset})
+    req = req_url({'keywords': search_key, 'type': search_type, 'limit': limit, 'offset': limit * offset})
+    old_url = 'https://music.163.com/api/search/get/web'
+    return try_get_data(req, 'http://localhost:3000/search?')
 
 
 def lyric(sid: int, lrc: bool = True, tlrc: bool = True):
