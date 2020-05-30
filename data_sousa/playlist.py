@@ -30,6 +30,9 @@ class playlist_old:
 
 class playlist_new(playlist_old):
 
+    def __init__(self, data):
+        self.path = key_path(data, point='playlist')
+
     def trackIds(self, i: int = 0) -> dict:
         """歌单中指定位置的歌曲的一些信息"""
         return self.path / f'trackIds/[{i}]'
