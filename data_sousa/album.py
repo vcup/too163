@@ -28,7 +28,7 @@ class album_old:
         """指定索引位置的歌手信息"""
         return self.path / f'artists/[{i}]'
 
-    def artists_iter(self) -> Generator[dict]:
+    def artists_iter(self) -> Generator[dict, Any, None]:
         """迭代专辑的所有歌手信息"""
         return (self.artists(i) for i in range(self.path / 'artists'))
 
