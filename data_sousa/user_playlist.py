@@ -16,6 +16,12 @@ class user_playlist_old:
     def list_iter(self) -> Generator[dict, Any, None]:
         return (self.list(i) for i in range(self.len))
 
+    def pid(self, i: int = 0) -> int:
+        return self.path / f'[{i}]/id'
+
+    def pid_iter(self) -> Generator[int, Any, None]:
+        return (self.pid(i) for i in range(self.len))
+
 
 class user_playlist_new(user_playlist_old):
     pass
