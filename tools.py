@@ -13,19 +13,19 @@ def databese_add_usr_playlist_id(uid):
     cursor = conn.cursor()
 
     cursor.execute(r"SELECT * FROM sqlite_master WHERE type='table' AND name = 'user_playlist'")
-    if cursor.fetchall():
-       usr_data = data_sousa.user_playlist(api.user_playlist(uid))
-       for pl in usr_data.list_iter():
-           pid = pl.get('id')
-           ptype = pl.get('specialType')
-           sha1 = hashlib.sha1(f'{uid}{pid}{ptype}'.encode('UTF-8')).hexdigest()
-           cursor.execute(r"INSERT OR IGNORE INTO user_playlist VALUES (?, ?, ?, ?)", (uid, pid, ptype, sha1))
-    else: # 如果表中没有user_playlist的表，则建立一个
+    if not cursor.fetchall():
         cursor.execute("""CREATE TABLE user_playlist (
         uid int(16),
         pid int(16),
         list_type int(1),
         hash char(40) PRIMARY KEY)""")
+
+    usr_data = data_sousa.user_playlist(api.user_playlist(uid))
+    for pl in usr_data.list_iter():
+       pid = pl.get('id')
+       ptype = pl.get('specialType')
+       sha1 = hashlib.sha1(f'{uid}{pid}{ptype}'.encode('UTF-8')).hexdigest()
+       cursor.execute(r"INSERT OR IGNORE INTO user_playlist VALUES (?, ?, ?, ?)", (uid, pid, ptype, sha1))
 
     conn.commit()
     cursor.close()
@@ -35,6 +35,24 @@ def databese_add_usr_playlist_id(uid):
 def database_add_playlist_song_id(pid):
     """在 song_data 数据库文件中的 playlist_song 表中添加数据
     表结构：pid|sid|hash(KEY)"""
+    conn = sqlite3.connect('song_data.db')
+    cursor = conn.cursor()
+
+    cursor.execute(r"SELECT * FROM sqlite_master WHERE type='table' AND name = 'playlist_song'")
+    if not cursor.fetchall():
+        cursor.execute("""CREATE TABLE playlist_song (
+        pid int(16),
+        sid int(16),
+        hash char(40) PRIMARY KEY)""")
+
+    playlist_data = data_sousa.playlist(api.playlist(pid))
+    for sid in playlist_data.sid_iter():
+        sha1 = hashlib.sha1(f'{pid}{sid}'.encode('UTF-8')).hexdigest()
+        cursor.execute(r"INSERT OR IGNORE INTO playlist_song VALUES (?, ?, ?)", (pid, sid, sha1))
+
+    conn.commit()
+    cursor.close()
+    conn.close()
 
 
 def usr_all_play_list_gen(uid: int) -> iter:
@@ -99,4 +117,5 @@ if __name__ == '__main__':
     #dbis(1378240901)
     #dbis(1595388977)
     #g_lyric()
-    databese_add_usr_playlist_id(2122797640)
+    #databese_add_usr_playlist_id(2122797640)
+    database_add_playlist_song_id(74069584)
