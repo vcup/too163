@@ -6,7 +6,7 @@ import check
 
 
 def databese_add_usr_playlist_id(uid):
-    """在 song_data 数据库文件中的 usr_playlist 表中添加数据
+    """在 song_data.db 数据库文件中的 usr_playlist 表中添加数据
     表结构：uid|pid|list_type|hash(KEY)
     其中，list_type 是整数，0代表为常规歌单，用户自己创建的和用户收藏的；5代表歌单为用户的红心歌单"""
     conn = sqlite3.connect('song_data.db')
@@ -33,7 +33,7 @@ def databese_add_usr_playlist_id(uid):
 
 
 def database_add_playlist_song_id(pid):
-    """在 song_data 数据库文件中的 playlist_song 表中添加数据
+    """在 song_data.db 数据库文件中的 playlist_song 表中添加数据
     表结构：pid|sid|hash(KEY)"""
     conn = sqlite3.connect('song_data.db')
     cursor = conn.cursor()
@@ -53,6 +53,12 @@ def database_add_playlist_song_id(pid):
     conn.commit()
     cursor.close()
     conn.close()
+
+
+def database_add_usr_playlist_info(uid):
+    """在 song_data.db 数据库文件中的 playlist_info 表中添加数据
+    表结构：pid(KEY)|name|uid|size|hash
+    由于歌单名字可能会变，所以不再以hash为主键，"""
 
 
 def g_lyric():
