@@ -1,0 +1,11 @@
+﻿# Python
+*.py[cod]
+*.so
+*.egg
+*.egg-info
+
+# pycharm
+.idea
+
+# vs
+.vs
