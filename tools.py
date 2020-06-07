@@ -87,7 +87,7 @@ def database_add_usr_playlist_info(uid):
         name = pl.get('name')
         size = pl.get('trackCount')
         intro = pl.get('description')
-        picUrl = pl.get('https://p2.music.126.net/j1d9dO_d7sisuqKf316tug==/109951163611589075.jpg')
+        picUrl = pl.get('coverImgUrl')
         sha1 = hashlib.sha1(f'{pid}{name}{uid}{size}{intro}{picUrl}'.encode('UTF-8')).hexdigest()
         cursor.execute(r"INSERT OR IGNORE INTO playlist_info VALUES (?, ?, ?, ?, ?, ?, ?)", (
             pid, name, uid, size, intro, picUrl, sha1))
