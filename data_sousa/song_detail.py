@@ -128,6 +128,13 @@ class song_detail_new(song_detail_old):
         """迭代所有请求歌曲的MV的ID"""
         return (self.mvid(i) for i in range(self.len))
 
+    def picUrl(self, i: int = 0) -> int:
+        """返回歌曲所属专辑的封面URL"""
+        return self.path / f'[{i}]/al/picUrl'
+
+    def picUrl_iter(self):
+        """迭代所有请求歌曲所属专辑的封面URL"""
+        return (self.picUrl(i) for i in range(self.len))
 
 def song_detail(data: dict) -> Union[song_detail_old, song_detail_new]:
     """如果数据来自播放列表的'tracks'，把数据添加到一个新字典里包装起来避免出错;
