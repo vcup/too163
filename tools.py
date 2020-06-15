@@ -64,7 +64,7 @@ def database_add_playlist_song_id(pid):
 
 def database_add_usr_playlist_info(uid):
     """在 song_data.db 数据库文件中的 playlist_info 表中添加数据
-    表结构：pid(KEY)|name|uid|size|intro|picUrl|hash
+    表结构：pid(KEY)|name|uid|size|intro(简介)|picUrl|hash
     由于歌单名字可能会变，所以不再以hash为主键"""
     conn = sqlite3.connect('song_data.db')
     cursor = conn.cursor()
@@ -91,6 +91,41 @@ def database_add_usr_playlist_info(uid):
         sha1 = hashlib.sha1(f'{pid}{name}{uid}{size}{intro}{picUrl}'.encode('UTF-8')).hexdigest()
         cursor.execute(r"INSERT OR IGNORE INTO playlist_info VALUES (?, ?, ?, ?, ?, ?, ?)", (
             pid, name, uid, size, intro, picUrl, sha1))
+
+    conn.commit()
+    cursor.close()
+    conn.close()
+
+
+def database_add_playlist_song_info(sid):
+    """在 song_data.db 数据库文件中的 song_info 表中添加数据
+    表结构：sid|name|album_id|artist_ids|alias(别名)|picUrl|mvid|hash(KEY)
+    artist_ids 是 varchar，格式为artist_id/artist_id/...
+    alias 同 artist_ids"""
+    conn = sqlite3.connect('song_data.db')
+    cursor = conn.cursor()
+
+    cursor.execute(r"SELECT * FROM sqlite_master WHERE type = 'table' AND name = 'song_info'")
+    if not cursor.fetchall():
+        cursor.execute("""CREATE TABLE song_info (
+        sid int(16),
+        name varchar(255),
+        album_id int(16),
+        artist_ids varchar(255),
+        alias varchar(255),
+        picUrl varchar(100),
+        mvid int(16),
+        hash char(40) PRIMARY KEY
+        )""")
+
+    song_detail = data_sousa.song_detail(api.song_detail(sid))
+    info = (song_detail.id_iter(), song_detail.name_iter(), song_detail.album_iter(),
+            song_detail.artist_iter(),
+            song_detail.alias_iter(), song_detail.picUrl_iter(), song_detail.mvid_iter())
+    for sid, name, album_id, artist_ids, alias, picUrl, mvid in zip(info):
+        sha1 = hashlib.sha1(f'{sid}{name}{album_id}{artist_ids}{alias}{picUrl}{mvid}'.encode('UTF-8')).hexdigest()
+        cursor.execute(r"INSERT OR IGNORE INTO song_info (?, ?, ?, ?, ?, ?, ?, ?, )",
+                       (sid, name, album_id, artist_ids, alias, picUrl, mvid, sha1))
 
     conn.commit()
     cursor.close()
