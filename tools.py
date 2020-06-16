@@ -8,7 +8,7 @@ import check
 def databese_add_usr_playlist_id(uid):
     """在 song_data.db 数据库文件中的 usr_playlist 表中添加数据
     表结构：uid|pid|size|list_type|hash(KEY)
-    size则是歌单包涵的单曲数
+    size则是用户拥有的歌单数（包括收藏的）
     其中，list_type 是整数，0代表为常规歌单，用户自己创建的和用户收藏的；5代表歌单为用户的红心歌单"""
     conn = sqlite3.connect('song_data.db')
     cursor = conn.cursor()
@@ -38,7 +38,8 @@ def databese_add_usr_playlist_id(uid):
 
 def database_add_playlist_song_id(pid):
     """在 song_data.db 数据库文件中的 playlist_song 表中添加数据
-    表结构：pid|sid|size|hash(KEY)"""
+    表结构：pid|sid|size|hash(KEY)
+    size 是歌单包涵的歌曲数"""
     conn = sqlite3.connect('song_data.db')
     cursor = conn.cursor()
 
