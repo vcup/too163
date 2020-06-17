@@ -3,6 +3,8 @@ import api
 import json
 import data_sousa
 import copy
+import tools
+import sqlite3
 
 
 def key_path():
@@ -41,7 +43,44 @@ def lyric_tools():
     print(lrc)
 
 
+def spider_plid():
+    """测试 database_add_playlist_song_id 的单元"""
+    tools.databese_add_usr_playlist_id(2122797640)
+    tools.databese_add_usr_playlist_id(1378240901)
+    conn = sqlite3.connect('song_data.db')
+    cursor = conn.cursor()
+
+    cursor.execute(r"SELECT * FROM user_playlist")
+    for s in cursor.fetchall():
+        print(s)
+
+
+def spider_plsid():
+    """测试 database_add_playlist_song_id 的单元"""
+    tools.database_add_playlist_song_id(3207732903)
+    tools.database_add_playlist_song_id(5003399521)
+    conn = sqlite3.connect('song_data.db')
+    cursor = conn.cursor()
+
+    cursor.execute(r"SELECT * FROM playlist_song")
+    for s in cursor.fetchall():
+        print(s)
+
+
+def spider_plinfo():
+    """database_add_usr_playlist_info"""
+    tools.database_add_usr_playlist_info(2122797640)
+    conn = sqlite3.connect('song_data.db')
+    cursor = conn.cursor()
+
+    cursor.execute(r"SELECT * FROM playlist_info")
+    for s in cursor.fetchall():
+        print(s)
+
 
 
 if __name__ == '__main__':
-    lyric_tools()
+    for n in range(100):
+        spider_plid()
+        spider_plsid()
+        spider_plinfo()
