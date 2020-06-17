@@ -1,13 +1,15 @@
 import api
 import data_sousa
 import sqlite3
+import hashlib
 import check
 
 
 def databese_add_usr_playlist_id(uid):
     """在 song_data.db 数据库文件中的 usr_playlist 表中添加数据
-    表结构：uid|pid|list_type
-    其中，list_type 是整数，0代表为常规歌单，用户自己创建的和用户收藏的；5代表歌单为用户的红心歌单"""
+    表结构：uid|pid|list_type|hash
+    其中，list_type 是整数，0代表为常规歌单，用户自己创建的和用户收藏的；5代表歌单为用户的红心歌单
+    hash则是uid+pid的sha1"""
     conn = sqlite3.connect('song_data.db')
     cursor = conn.cursor()
 
@@ -16,14 +18,16 @@ def databese_add_usr_playlist_id(uid):
         cursor.execute("""CREATE TABLE user_playlist (
         uid int(16),
         pid int(16),
-        list_type int(1)
+        list_type int(1),
+        hash char(40) PRIMARY KEY
         )""")
 
     usr_data = data_sousa.user_playlist(api.user_playlist(uid))
     for pl in usr_data.list_iter():
         pid = pl.get('id')
         ptype = pl.get('specialType')
-        cursor.execute(r"INSERT OR IGNORE INTO user_playlist VALUES (?, ?, ?)", (uid, pid, ptype))
+        sha1 = hashlib.sha1(f'{uid}{pid}'.encode('UTF-8')).hexdigest()
+        cursor.execute(r"INSERT OR IGNORE INTO user_playlist VALUES (?, ?, ?, ?)", (uid, pid, ptype, sha1))
 
     conn.commit()
     cursor.close()
@@ -32,7 +36,8 @@ def databese_add_usr_playlist_id(uid):
 
 def database_add_playlist_song_id(pid):
     """在 song_data.db 数据库文件中的 playlist_song 表中添加数据
-    表结构：pid|sid"""
+    表结构：pid|sid|hash
+    其中，hash是pid+sid的sha1"""
     conn = sqlite3.connect('song_data.db')
     cursor = conn.cursor()
 
@@ -40,12 +45,14 @@ def database_add_playlist_song_id(pid):
     if not cursor.fetchall():
         cursor.execute("""CREATE TABLE playlist_song (
         pid int(16),
-        sid int(16)
+        sid int(16),
+        hash char(40) PRIMARY KEY
         )""")
 
     playlist_data = data_sousa.playlist(api.playlist(pid))
     for sid in playlist_data.sid_iter():
-        cursor.execute(r"INSERT OR IGNORE INTO playlist_song VALUES (?, ?)", (pid, sid))
+        sha1 = hashlib.sha1(f'{pid}{sid}'.encode('UTF-8')).hexdigest()
+        cursor.execute(r"INSERT OR IGNORE INTO playlist_song VALUES (?, ?, ?)", (pid, sid, sha1))
 
     conn.commit()
     cursor.close()
@@ -54,19 +61,20 @@ def database_add_playlist_song_id(pid):
 
 def database_add_usr_playlist_info(uid):
     """在 song_data.db 数据库文件中的 playlist_info 表中添加数据
-    表结构：pid(KEY)|name|uid|intro(简介)|picUrl
-    由于歌单名字可能会变，所以不再以hash为主键"""
+    表结构：pid(KEY)|name|uid|intro(简介)|picUrl|hash
+    其中，hash是uid+pid的sha1"""
     conn = sqlite3.connect('song_data.db')
     cursor = conn.cursor()
 
     cursor.execute(r"SELECT * FROM sqlite_master WHERE type='table' AND name = 'playlist_info'")
     if not cursor.fetchall():
         cursor.execute("""CREATE TABLE playlist_info (
-        pid int(16) PRIMARY KEY,
+        pid int(16),
         name varchar(40),
         uid int(16),
         intro varchar(1000),
-        picUrl varchar(100)
+        picUrl varchar(100),
+        hash char(40) PRIMARY KEY
         )""")
 
     usr_playlist = data_sousa.user_playlist(api.user_playlist(uid))
@@ -78,8 +86,9 @@ def database_add_usr_playlist_info(uid):
         if len(name) > 40 or len(intro) > 1000 or len(picUrl) > 100:
             raise ValueError(f'长度错误：name:{len(name)} intro:{len(intro)} picUrl:{len(picUrl)}')
 
-        cursor.execute(r"INSERT OR IGNORE INTO playlist_info VALUES (?, ?, ?, ?, ?)", (
-            pid, name, uid, intro, picUrl))
+        sha1 = hashlib.sha1(f'{uid}{pid}'.encode('UTF-8')).hexdigest()
+        cursor.execute(r"INSERT OR IGNORE INTO playlist_info VALUES (?, ?, ?, ?, ?, ?)", (
+            pid, name, uid, intro, picUrl, sha1))
 
     conn.commit()
     cursor.close()
@@ -88,9 +97,10 @@ def database_add_usr_playlist_info(uid):
 
 def database_add_playlist_song_info(sid):
     """在 song_data.db 数据库文件中的 song_info 表中添加数据
-    表结构：sid|name|album_id|artist_ids|alias(别名)|picUrl|mvid
+    表结构：sid|name|album_id|artist_ids|alias(别名)|picUrl|mvid|hash
     artist_ids 是 varchar，格式为artist_id/artist_id/...
-    alias 同 artist_ids"""
+    alias 同 artist_ids
+    hash 是 sid+albumid+artist_ids+mvid的sha1"""
     conn = sqlite3.connect('song_data.db')
     cursor = conn.cursor()
 
@@ -103,7 +113,8 @@ def database_add_playlist_song_info(sid):
         artist_ids varchar(255),
         alias varchar(255),
         picUrl varchar(100),
-        mvid int(16)
+        mvid int(16),
+        hash char(40) PRIMARY KEY
         )""")
 
     song_detail = data_sousa.song_detail(api.song_detail(sid))
@@ -114,8 +125,9 @@ def database_add_playlist_song_info(sid):
         if len(name) > 255 or len(artist_ids) > 255 or len(alias) > 255 or len(picUrl) > 100:
             raise ValueError(f'长度错误：name:{len(name)} artist_ids:{len(artist_ids)} alias:{len(alias)} picUrl:{picUrl}')
 
-        cursor.execute(r"INSERT OR IGNORE INTO song_info (?, ?, ?, ?, ?, ?, ?)",
-                       (sid, name, album_id, artist_ids, alias, picUrl, mvid))
+        sha1 = hashlib.sha1(f'{sid}{album_id}{artist_ids}{mvid}'.encode('UTF-8')).hexdigest()
+        cursor.execute(r"INSERT OR IGNORE INTO song_info (?, ?, ?, ?, ?, ?, ?, ?)",
+                       (sid, name, album_id, artist_ids, alias, picUrl, mvid, sha1))
 
     conn.commit()
     cursor.close()
