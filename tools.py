@@ -83,7 +83,7 @@ def database_add_usr_playlist_info(uid):
         name = pl.get('name')
         intro = pl.get('description')
         picUrl = pl.get('coverImgUrl')
-        if len(name) > 40 or len(intro) > 1000 or len(picUrl) > 100:
+        if len(name) > 40 or len(intro if intro else '') > 1000 or len(picUrl) > 100:
             raise ValueError(f'长度错误：name:{len(name)} intro:{len(intro)} picUrl:{len(picUrl)}')
 
         sha1 = hashlib.sha1(f'{uid}{pid}'.encode('UTF-8')).hexdigest()
