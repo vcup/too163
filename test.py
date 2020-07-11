@@ -1,10 +1,10 @@
 import datetime
 import time
 import unittest
-from json import dumps, loads
+from json import loads
 
 import test_item
-from data_sousa import song_detail, album, key_path
+from data_sousa import song, album, key_path
 
 
 class TestDataSousa(unittest.TestCase):
@@ -17,10 +17,10 @@ class TestSong(TestDataSousa):
         cls.song_dict_751472 = test_item.song_751472
         cls.song_dict_22808851 = test_item.song_22808851
         cls.song_dict_1293905025 = test_item.song_1293905025
-        # cls.song = song_detail(cls.song_dict_751472, cls.song_dict_22808851, cls.song_dict_1293905025)
-        cls.song_751472 = song_detail(cls.song_dict_751472)
-        cls.song_22808851 = song_detail(cls.song_dict_22808851)
-        cls.song_1293905025 = song_detail(cls.song_dict_1293905025)
+        cls.song = song(cls.song_dict_751472, cls.song_dict_22808851, cls.song_dict_1293905025)
+        cls.song_751472 = song(cls.song_dict_751472)
+        cls.song_22808851 = song(cls.song_dict_22808851)
+        cls.song_1293905025 = song(cls.song_dict_1293905025)
 
 
 class TestAlbum(TestDataSousa):

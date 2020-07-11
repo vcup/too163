@@ -15,7 +15,7 @@ def play_list_all_song_info(pid: int) -> iter:
     play_list = data_sousa.playlist(play_list_dict)
     for sid in play_list.sid_iter():
         song_info = api.song_detail(sid)
-        i = data_sousa.song_detail(song_info)
+        i = data_sousa.song(song_info)
         yield {'name': i.name(), 'id': i.id(), 'artist': ','.join((x.get('name') for x in i.artist_iter()))}
 
 

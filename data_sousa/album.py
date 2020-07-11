@@ -3,7 +3,7 @@ import json
 import time
 
 from data_sousa import key_path
-from data_sousa import song_detail
+from data_sousa import song
 from typing import Union, Generator, Any, NewType
 
 Url = NewType('Url', str)
@@ -19,7 +19,7 @@ class AlbumOld:
         """返回专辑的指定曲目"""
         return self.path / f'songs/[{i}]'
 
-    def song_iter(self) -> Generator[song_detail, Any, None]:
+    def song_iter(self) -> Generator[song, Any, None]:
         """迭代专辑包涵的所有曲目"""
         return (self.songs(i) for i in range((self.path / 'size')))
 
@@ -95,7 +95,7 @@ class AlbumNew(AlbumOld):
         """返回专辑指定位置单曲"""
         return self.path.copy_set_point('') / f'songs/[{i}]'
 
-    def song_iter(self) -> Generator[song_detail, Any, None]:
+    def song_iter(self) -> Generator[song, Any, None]:
         """返回专辑所有单曲"""
         return (self.songs(i) for i in range((self.path / 'size')))
 

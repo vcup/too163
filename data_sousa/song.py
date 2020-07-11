@@ -2,12 +2,14 @@ from data_sousa import key_path
 from typing import Union, Generator, Any
 
 
-class song_detail_old:
-
+class SongOld:
     """解析来自 music.163.com/api/song/detail 的数据
     API一次返回多个歌曲的详细信息"""
 
-    def __init__(self, data: dict):
+    def __init__(self, *data: dict):
+        if len(data) >= 2:
+            new_songs = [s for ss in data for s in ss.get('songs')]
+            data = data[0].setdefault('songs', new_songs)
         self.path = key_path(data, point='songs')
         self.len = len(self.path)
 
@@ -27,7 +29,7 @@ class song_detail_old:
         """迭代指定索引位置的歌曲的所有歌手信息"""
         return (self.artist(i1, i2) for i2 in range(len(self.path / f'[{i1}]/artists')))
 
-    def all_aritst_iter(self) -> Generator[dict, Any, None]:
+    def all_artist_iter(self) -> Generator[dict, Any, None]:
         """迭代所有请求歌曲的所有歌手信息"""
         return (a for i1 in range(self.len) for a in self.artist_iter(i1))
 
@@ -68,7 +70,7 @@ class song_detail_old:
         return (self.mvid(i) for i in range(self.len))
 
 
-class song_detail_new(song_detail_old):
+class SongNew(SongOld):
     """解析来自 music.163.com/weapi/v3/playlist/detail 的数据
     API一次返回多个歌曲的详细信息"""
 
@@ -88,7 +90,7 @@ class song_detail_new(song_detail_old):
         """迭代指定索引位置的歌曲的所有歌手信息"""
         return (self.artist(i1, i2) for i2 in range(len(self.path / f'[{i1}]/ar')))
 
-    def all_aritst_iter(self) -> Generator[dict, Any, None]:
+    def all_artist_iter(self) -> Generator[dict, Any, None]:
         """迭代所有请求歌曲的所有歌手信息"""
         return (a for i1 in range(self.len) for a in self.artist_iter(i1))
 
@@ -124,15 +126,12 @@ class song_detail_new(song_detail_old):
         """指定索引位置的歌曲的MV的ID"""
         return self.path / f'[{i}]/mv'
 
-    def mvid_iter(self) -> Generator[int,Any, None]:
+    def mvid_iter(self) -> Generator[int, Any, None]:
         """迭代所有请求歌曲的MV的ID"""
         return (self.mvid(i) for i in range(self.len))
 
 
-def song_detail(data: dict) -> Union[song_detail_old, song_detail_new]:
-    """如果数据来自播放列表的'tracks'，把数据添加到一个新字典里包装起来避免出错;
-    决定传入数据应该调用解析哪个版本的类"""
-    if 'code' in data.keys(): # 直接调用API时返回的结果里必有'code'键
-        return song_detail_new(data)
-    data = {'privileges': None, 'songs': [data]}
-    return song_detail_old(data)
+def song(*data: dict) -> Union[SongOld, SongNew]:
+    if data[0].get('songs')[0].get('ar'):
+        return SongNew(*data)
+    return SongOld(*data)
