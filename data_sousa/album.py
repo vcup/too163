@@ -21,7 +21,7 @@ class AlbumOld:
 
     def song_iter(self) -> Generator[song_detail, Any, None]:
         """迭代专辑包涵的所有曲目"""
-        return (self.songs(i) for i in range((self.path / 'size') - 1))
+        return (self.songs(i) for i in range((self.path / 'size')))
 
     def artist(self) -> dict:
         """单个歌手信息，与self.artists不同"""
@@ -33,7 +33,7 @@ class AlbumOld:
 
     def artists_iter(self) -> Generator[dict, Any, None]:
         """迭代专辑的所有歌手信息"""
-        return (self.artists(i) for i in range(self.path / 'artists'))
+        return (self.artists(i) for i in range(len(self.path.get('artists'))))
 
     def id(self) -> int:
         """专辑ID"""
@@ -62,11 +62,11 @@ class AlbumOld:
     def pub_date(self, time_zone_info=None) -> datetime.datetime:
         """发布时间，返回datetime实例"""
         time_tuple = json.loads(
-            time.strftime('[%Y, %m, %d, %H, %M, %S]',
-                          time.localtime(self.pub_time())
+            time.strftime('["%Y", "%m", "%d", "%H", "%M", "%S"]',
+                          time.localtime(self.pub_time() / 1000)
                           )
         )
-        return datetime.datetime(*time_tuple, tzinfo=time_zone_info)
+        return datetime.datetime(*(int(n) for n in time_tuple), tzinfo=time_zone_info)
 
     def company(self) -> str:
         """发行商"""
@@ -97,7 +97,7 @@ class AlbumNew(AlbumOld):
 
     def song_iter(self) -> Generator[song_detail, Any, None]:
         """返回专辑所有单曲"""
-        return (self.songs(i) for i in range((self.path / 'size') - 1))
+        return (self.songs(i) for i in range((self.path / 'size')))
 
 
 def album(data: dict) -> Union[AlbumOld, AlbumNew]:

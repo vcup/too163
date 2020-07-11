@@ -1,9 +1,9 @@
-from json import load as _load
+from json import load as __load
 
 
 def __open_json(file_path: str) -> dict:
-    with open(file_path, 'r') as file:
-        return _load(file)
+    with open(f'test_item/{file_path}', 'r') as file:
+        return __load(file)
 
 
 album_3308499 = __open_json('album_3308499.json')
