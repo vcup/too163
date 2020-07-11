@@ -72,6 +72,15 @@ class AlbumOld:
     def desc(self) -> str:
         return self.path / 'briefDesc'
 
+    def tag(self) -> str:
+        return self.path / 'tags'
+
+    def type(self) -> str:
+        return self.path / 'type'
+
+    def subtype(self) -> str:
+        return self.path / 'subType'
+
 
 class AlbumNew(AlbumOld):
 
