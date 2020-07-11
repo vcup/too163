@@ -1,3 +1,7 @@
+import datetime
+import json
+import time
+
 from data_sousa import key_path
 from data_sousa import song_detail
 from typing import Union, Generator, Any, NewType
@@ -5,26 +9,25 @@ from typing import Union, Generator, Any, NewType
 Url = NewType('Url', str)
 
 
-class album_old:
+class AlbumOld:
 
     def __init__(self, data: dict):
         self.path = key_path(data, point='album')
         self.len = len(self.path)
 
-
-    def track(self, i: int = 0) -> dict:
+    def songs(self, i: int = 0) -> dict:
         """返回专辑的指定曲目"""
         return self.path / f'songs/[{i}]'
 
-    def track_iter(self) -> Generator[song_detail, Any, None]:
+    def song_iter(self) -> Generator[song_detail, Any, None]:
         """迭代专辑包涵的所有曲目"""
-        return (self.track(i) for i in range(self.path / 'songs'))
+        return (self.songs(i) for i in range((self.path / 'size') - 1))
 
     def artist(self) -> dict:
-        """单个歌手信息，与self.aritsts不同"""
+        """单个歌手信息，与self.artists不同"""
         return self.path / 'artist'
 
-    def artists(self, i) -> dict:
+    def artists(self, i:int = 0) -> dict:
         """指定索引位置的歌手信息"""
         return self.path / f'artists/[{i}]'
 
@@ -40,7 +43,7 @@ class album_old:
         """专辑名"""
         return self.path / 'name'
 
-    def picUrl(self) -> Url:
+    def pic_url(self) -> Url:
         """专辑的封面"""
         return self.path / 'picUrl'
 
@@ -52,10 +55,34 @@ class album_old:
         """奇怪信息"""
         return self.path / 'info'
 
+    def pub_time(self) -> int:
+        return self.path / 'publishTime'
 
-class album_new(album_old):
-    pass
+    def pub_date(self, time_zone_info=None) -> datetime.datetime:
+        time_tuple = json.loads(
+            time.strftime('[%Y, %m, %d, %H, %M, %S]',
+                          time.localtime(self.pub_time())
+                          )
+        )
+        return datetime.datetime(*time_tuple, tzinfo=time_zone_info)
+
+    def company(self) -> str:
+        return self.path / 'company'
+
+    def desc(self) -> str:
+        return self.path / 'briefDesc'
 
 
-def album(data: dict) -> Union[album_old, album_new]:
-    return album_old(data)
+class AlbumNew(AlbumOld):
+
+    def songs(self, i: int = 0) -> dict:
+        return self.path.copy_set_point('') / f'songs/[{i}]'
+
+    def song_iter(self) -> Generator[song_detail, Any, None]:
+        return (self.songs(i) for i in range((self.path / 'size') - 1))
+
+
+def album(data: dict) -> Union[AlbumOld, AlbumNew]:
+    if 'songs' in data.keys():
+        return AlbumNew(data)
+    return AlbumOld(data)
