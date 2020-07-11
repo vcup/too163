@@ -27,7 +27,7 @@ class AlbumOld:
         """单个歌手信息，与self.artists不同"""
         return self.path / 'artist'
 
-    def artists(self, i:int = 0) -> dict:
+    def artists(self, i: int = 0) -> dict:
         """指定索引位置的歌手信息"""
         return self.path / f'artists/[{i}]'
 
@@ -56,9 +56,11 @@ class AlbumOld:
         return self.path / 'info'
 
     def pub_time(self) -> int:
+        """发布时间的时间戳"""
         return self.path / 'publishTime'
 
     def pub_date(self, time_zone_info=None) -> datetime.datetime:
+        """发布时间，返回datetime实例"""
         time_tuple = json.loads(
             time.strftime('[%Y, %m, %d, %H, %M, %S]',
                           time.localtime(self.pub_time())
@@ -67,27 +69,34 @@ class AlbumOld:
         return datetime.datetime(*time_tuple, tzinfo=time_zone_info)
 
     def company(self) -> str:
+        """发行商"""
         return self.path / 'company'
 
     def desc(self) -> str:
+        """简介"""
         return self.path / 'briefDesc'
 
     def tag(self) -> str:
+        """标签"""
         return self.path / 'tags'
 
     def type(self) -> str:
+        """专辑类型"""
         return self.path / 'type'
 
     def subtype(self) -> str:
+        """子类型"""
         return self.path / 'subType'
 
 
 class AlbumNew(AlbumOld):
 
     def songs(self, i: int = 0) -> dict:
+        """返回专辑指定位置单曲"""
         return self.path.copy_set_point('') / f'songs/[{i}]'
 
     def song_iter(self) -> Generator[song_detail, Any, None]:
+        """返回专辑所有单曲"""
         return (self.songs(i) for i in range((self.path / 'size') - 1))
 
 
