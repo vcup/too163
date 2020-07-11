@@ -7,10 +7,12 @@ class SongOld:
     API一次返回多个歌曲的详细信息"""
 
     def __init__(self, *data: dict):
-        if len(data) >= 2:
-            new_songs = [s for ss in data for s in ss.get('songs')]
-            data = data[0].setdefault('songs', new_songs)
-        self.path = key_path(data, point='songs')
+        new_songs = [s for ss in data for s in ss.get('songs')]
+        data[0]['songs'] = new_songs
+        try:
+            self.path = key_path(data[0], point='songs')
+        except IndexError:
+            raise TypeError(f'需要至少一个参数，传入了{len(data)}个')
         self.len = len(self.path)
 
     def album(self, i: int = 0) -> dict:
@@ -33,13 +35,13 @@ class SongOld:
         """迭代所有请求歌曲的所有歌手信息"""
         return (a for i1 in range(self.len) for a in self.artist_iter(i1))
 
-    def alias(self, i1: int = 0, i2: int = 0) -> str:
+    def alia(self, i1: int = 0, i2: int = 0) -> str:
         """指定索引位置的歌曲的单个别名"""
         return self.path / f'[{i1}]/alias/[{i2}]'
 
     def alias_iter(self, i1: int = 0) -> Generator[str, Any, None]:
         """迭代指定索引位置的歌曲的所有别名"""
-        return (self.alias(i1, i2) for i2 in range(len(self.path / f'[{i1}]/artists')))
+        return (self.alia(i1, i2) for i2 in range(len(self.path / f'[{i1}]/artists')))
 
     def all_alias_iter(self) -> Generator[dict, Any, None]:
         """迭代所有请求歌曲的所有别名"""
@@ -94,17 +96,17 @@ class SongNew(SongOld):
         """迭代所有请求歌曲的所有歌手信息"""
         return (a for i1 in range(self.len) for a in self.artist_iter(i1))
 
-    def alias(self, i1: int = 0, i2: int = 0) -> str:
+    def alia(self, i1: int = 0, i2: int = 0) -> str:
         """指定索引位置的歌曲的单个别名"""
-        return self.path / f'[{i1}]/alias/[{i2}]'
+        return self.path / f'[{i1}]/alia/[{i2}]'
 
-    def alias_iter(self, i1: int = 0) -> Generator[dict, Any, None]:
+    def alias_iter(self, i1: int = 0) -> Generator[str, Any, None]:
         """迭代指定索引位置的歌曲的所有别名"""
-        return (self.artist(i1, i2) for i2 in range(len(self.path / f'[{i1}]/artists')))
+        return (self.alia(i1, i2) for i2 in range(len(self.path / f'[{i1}]/alia')))
 
-    def all_alias_iter(self) -> Generator[dict, Any, None]:
+    def all_alias_iter(self) -> Generator[str, Any, None]:
         """迭代所有请求歌曲的所有别名"""
-        return (a for i1 in range(self.len) for a in self.artist_iter(i1))
+        return (alia for i in range(self.len) for alia in self.alias_iter(i))
 
     def name(self, i: int = 0) -> str:
         """指定索引位置的歌曲的名字"""
