@@ -1,0 +1,119 @@
+{
+    "songs": [
+        {
+            "name": "物凄いあややがぶっちゃけ物凄いうた",
+            "id": 22808851,
+            "pst": 0,
+            "t": 0,
+            "ar": [
+                {
+                    "id": 19780,
+                    "name": "Halozy",
+                    "tns": [],
+                    "alias": []
+                }
+            ],
+            "alia": [],
+            "pop": 25,
+            "st": 0,
+            "rt": "",
+            "fee": 0,
+            "v": 9,
+            "crbt": null,
+            "cf": "",
+            "al": {
+                "id": 2096642,
+                "name": "Tonic Triangle",
+                "picUrl": "https://p2.music.126.net/xKYzx-e9TV-Yk06K56nNpw==/915893185961110.jpg",
+                "tns": [],
+                "pic": 915893185961110
+            },
+            "dt": 221000,
+            "h": {
+                "br": 320000,
+                "fid": 0,
+                "size": 8843167,
+                "vd": -41500
+            },
+            "m": {
+                "br": 192000,
+                "fid": 0,
+                "size": 5305978,
+                "vd": -39000
+            },
+            "l": {
+                "br": 128000,
+                "fid": 0,
+                "size": 3537384,
+                "vd": -37700
+            },
+            "a": null,
+            "cd": "1",
+            "no": 6,
+            "rtUrl": null,
+            "ftype": 0,
+            "rtUrls": [],
+            "djId": 0,
+            "copyright": 2,
+            "s_id": 0,
+            "mark": 9007199255003136,
+            "originCoverType": 0,
+            "single": 0,
+            "noCopyrightRcmd": null,
+            "mv": 0,
+            "rtype": 0,
+            "rurl": null,
+            "mst": 9,
+            "cp": 663018,
+            "publishTime": 1325174400007
+        }
+    ],
+    "privileges": [
+        {
+            "id": 22808851,
+            "fee": 0,
+            "payed": 0,
+            "st": 0,
+            "pl": 320000,
+            "dl": 999000,
+            "sp": 7,
+            "cp": 1,
+            "subp": 1,
+            "cs": false,
+            "maxbr": 999000,
+            "fl": 320000,
+            "toast": false,
+            "flag": 0,
+            "preSell": false,
+            "playMaxbr": 999000,
+            "downloadMaxbr": 999000,
+            "chargeInfoList": [
+                {
+                    "rate": 128000,
+                    "chargeUrl": null,
+                    "chargeMessage": null,
+                    "chargeType": 0
+                },
+                {
+                    "rate": 192000,
+                    "chargeUrl": null,
+                    "chargeMessage": null,
+                    "chargeType": 0
+                },
+                {
+                    "rate": 320000,
+                    "chargeUrl": null,
+                    "chargeMessage": null,
+                    "chargeType": 0
+                },
+                {
+                    "rate": 999000,
+                    "chargeUrl": null,
+                    "chargeMessage": null,
+                    "chargeType": 1
+                }
+            ]
+        }
+    ],
+    "code": 200
+}

@@ -1,0 +1,117 @@
+{
+    "songs": [
+        {
+            "name": "ワンルームシュガーライフ (TV size ver.)",
+            "id": 1293905025,
+            "pst": 0,
+            "t": 0,
+            "ar": [
+                {
+                    "id": 28083218,
+                    "name": "ナナヲアカリ",
+                    "tns": [],
+                    "alias": []
+                }
+            ],
+            "alia": [
+                "TV动画《Happy Sugar Life》片头曲 / TVアニメ「ハッピーシュガーライフ」OPテーマ"
+            ],
+            "pop": 80,
+            "st": 0,
+            "rt": null,
+            "fee": 0,
+            "v": 24,
+            "crbt": null,
+            "cf": "",
+            "al": {
+                "id": 71851620,
+                "name": "ワンルームシュガーライフ (期間生産限定盤)",
+                "picUrl": "https://p1.music.126.net/Mikldm7Z_MJd0pUKvZrE7w==/109951163479130633.jpg",
+                "tns": [],
+                "pic_str": "109951163479130633",
+                "pic": 109951163479130640
+            },
+            "dt": 89051,
+            "h": null,
+            "m": {
+                "br": 192000,
+                "fid": 0,
+                "size": 2137905,
+                "vd": -83432
+            },
+            "l": {
+                "br": 128000,
+                "fid": 0,
+                "size": 1425284,
+                "vd": -81541
+            },
+            "a": null,
+            "cd": "01",
+            "no": 4,
+            "rtUrl": null,
+            "ftype": 0,
+            "rtUrls": [],
+            "djId": 0,
+            "copyright": 2,
+            "s_id": 0,
+            "mark": 262144,
+            "originCoverType": 0,
+            "single": 0,
+            "noCopyrightRcmd": null,
+            "mst": 9,
+            "cp": 663018,
+            "mv": 0,
+            "rtype": 0,
+            "rurl": null,
+            "publishTime": 1534867200007
+        }
+    ],
+    "privileges": [
+        {
+            "id": 1293905025,
+            "fee": 0,
+            "payed": 0,
+            "st": 0,
+            "pl": 192000,
+            "dl": 192000,
+            "sp": 7,
+            "cp": 1,
+            "subp": 1,
+            "cs": false,
+            "maxbr": 192000,
+            "fl": 192000,
+            "toast": false,
+            "flag": 0,
+            "preSell": false,
+            "playMaxbr": 192000,
+            "downloadMaxbr": 192000,
+            "chargeInfoList": [
+                {
+                    "rate": 128000,
+                    "chargeUrl": null,
+                    "chargeMessage": null,
+                    "chargeType": 0
+                },
+                {
+                    "rate": 192000,
+                    "chargeUrl": null,
+                    "chargeMessage": null,
+                    "chargeType": 0
+                },
+                {
+                    "rate": 320000,
+                    "chargeUrl": null,
+                    "chargeMessage": null,
+                    "chargeType": 0
+                },
+                {
+                    "rate": 999000,
+                    "chargeUrl": null,
+                    "chargeMessage": null,
+                    "chargeType": 1
+                }
+            ]
+        }
+    ],
+    "code": 200
+}

@@ -1,0 +1,121 @@
+{
+    "songs": [
+        {
+            "name": "チルノのパーフェクトさんすう教室",
+            "id": 751472,
+            "pst": 0,
+            "t": 0,
+            "ar": [
+                {
+                    "id": 16114,
+                    "name": "Alternative ending",
+                    "tns": [],
+                    "alias": []
+                }
+            ],
+            "alia": [
+                "琪露诺的完美算数教室"
+            ],
+            "pop": 95,
+            "st": 0,
+            "rt": "",
+            "fee": 0,
+            "v": 22,
+            "crbt": null,
+            "cf": "",
+            "al": {
+                "id": 73747,
+                "name": "東方氷雪歌集",
+                "picUrl": "https://p1.music.126.net/UZilxJ8yW3WnrfXV92QLzg==/920291232448715.jpg",
+                "tns": [],
+                "pic": 920291232448715
+            },
+            "dt": 278640,
+            "h": {
+                "br": 320000,
+                "fid": 0,
+                "size": 11148060,
+                "vd": -3
+            },
+            "m": {
+                "br": 192000,
+                "fid": 0,
+                "size": 6688853,
+                "vd": -3
+            },
+            "l": {
+                "br": 128000,
+                "fid": 0,
+                "size": 4459250,
+                "vd": -3
+            },
+            "a": null,
+            "cd": "1",
+            "no": 1,
+            "rtUrl": null,
+            "ftype": 0,
+            "rtUrls": [],
+            "djId": 0,
+            "copyright": 2,
+            "s_id": 0,
+            "mark": 262144,
+            "originCoverType": 0,
+            "single": 0,
+            "noCopyrightRcmd": null,
+            "mv": 5326125,
+            "rtype": 0,
+            "rurl": null,
+            "mst": 9,
+            "cp": 0,
+            "publishTime": 1225555200000
+        }
+    ],
+    "privileges": [
+        {
+            "id": 751472,
+            "fee": 0,
+            "payed": 0,
+            "st": 0,
+            "pl": 320000,
+            "dl": 999000,
+            "sp": 7,
+            "cp": 1,
+            "subp": 1,
+            "cs": false,
+            "maxbr": 999000,
+            "fl": 320000,
+            "toast": false,
+            "flag": 0,
+            "preSell": false,
+            "playMaxbr": 999000,
+            "downloadMaxbr": 999000,
+            "chargeInfoList": [
+                {
+                    "rate": 128000,
+                    "chargeUrl": null,
+                    "chargeMessage": null,
+                    "chargeType": 0
+                },
+                {
+                    "rate": 192000,
+                    "chargeUrl": null,
+                    "chargeMessage": null,
+                    "chargeType": 0
+                },
+                {
+                    "rate": 320000,
+                    "chargeUrl": null,
+                    "chargeMessage": null,
+                    "chargeType": 0
+                },
+                {
+                    "rate": 999000,
+                    "chargeUrl": null,
+                    "chargeMessage": null,
+                    "chargeType": 1
+                }
+            ]
+        }
+    ],
+    "code": 200
+}
