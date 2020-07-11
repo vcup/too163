@@ -1,0 +1,1170 @@
+{
+    "songs": [
+        {
+            "rtUrls": [],
+            "ar": [
+                {
+                    "id": 21070,
+                    "name": "PHOENIX Project",
+                    "alia": [
+                        "稲井ゆう"
+                    ]
+                }
+            ],
+            "al": {
+                "id": 3308499,
+                "name": "東方8bit+Band+DanceアレンジCD ～霧雨魔法典～",
+                "picUrl": "https://p1.music.126.net/MKzOkEbgKdPC-HPJKlOlfA==/7928578350619949.jpg",
+                "pic_str": "7928578350619949",
+                "pic": 7928578350619949
+            },
+            "st": 0,
+            "noCopyrightRcmd": null,
+            "a": null,
+            "m": {
+                "br": 192000,
+                "fid": 0,
+                "size": 1635099,
+                "vd": -5000
+            },
+            "rtUrl": null,
+            "ftype": 0,
+            "cd": "1",
+            "rtype": 0,
+            "rurl": null,
+            "pst": 0,
+            "t": 0,
+            "alia": [],
+            "pop": 25,
+            "rt": null,
+            "mst": 9,
+            "cp": 663018,
+            "crbt": null,
+            "cf": "",
+            "dt": 68075,
+            "h": {
+                "br": 320000,
+                "fid": 0,
+                "size": 2725137,
+                "vd": -7400
+            },
+            "l": {
+                "br": 128000,
+                "fid": 0,
+                "size": 1090080,
+                "vd": -3400
+            },
+            "djId": 0,
+            "no": 1,
+            "fee": 0,
+            "v": 7,
+            "mv": 0,
+            "name": "封印されし神々 - PSG",
+            "id": 35040164,
+            "privilege": {
+                "id": 35040164,
+                "fee": 0,
+                "payed": 0,
+                "st": 0,
+                "pl": 320000,
+                "dl": 320000,
+                "sp": 7,
+                "cp": 1,
+                "subp": 1,
+                "cs": false,
+                "maxbr": 320000,
+                "fl": 320000,
+                "toast": false,
+                "flag": 0,
+                "preSell": false,
+                "playMaxbr": 320000,
+                "downloadMaxbr": 320000,
+                "chargeInfoList": [
+                    {
+                        "rate": 128000,
+                        "chargeUrl": null,
+                        "chargeMessage": null,
+                        "chargeType": 0
+                    },
+                    {
+                        "rate": 192000,
+                        "chargeUrl": null,
+                        "chargeMessage": null,
+                        "chargeType": 0
+                    },
+                    {
+                        "rate": 320000,
+                        "chargeUrl": null,
+                        "chargeMessage": null,
+                        "chargeType": 0
+                    },
+                    {
+                        "rate": 999000,
+                        "chargeUrl": null,
+                        "chargeMessage": null,
+                        "chargeType": 1
+                    }
+                ]
+            }
+        },
+        {
+            "rtUrls": [],
+            "ar": [
+                {
+                    "id": 21070,
+                    "name": "PHOENIX Project",
+                    "alia": [
+                        "稲井ゆう"
+                    ]
+                }
+            ],
+            "al": {
+                "id": 3308499,
+                "name": "東方8bit+Band+DanceアレンジCD ～霧雨魔法典～",
+                "picUrl": "https://p1.music.126.net/MKzOkEbgKdPC-HPJKlOlfA==/7928578350619949.jpg",
+                "pic_str": "7928578350619949",
+                "pic": 7928578350619949
+            },
+            "st": 0,
+            "noCopyrightRcmd": null,
+            "a": null,
+            "m": {
+                "br": 192000,
+                "fid": 0,
+                "size": 4510867,
+                "vd": -37400
+            },
+            "rtUrl": null,
+            "ftype": 0,
+            "cd": "1",
+            "rtype": 0,
+            "rurl": null,
+            "pst": 0,
+            "t": 0,
+            "alia": [],
+            "pop": 10,
+            "rt": null,
+            "mst": 9,
+            "cp": 663018,
+            "crbt": null,
+            "cf": "",
+            "dt": 187898,
+            "h": {
+                "br": 320000,
+                "fid": 0,
+                "size": 7518084,
+                "vd": -39600
+            },
+            "l": {
+                "br": 128000,
+                "fid": 0,
+                "size": 3007259,
+                "vd": -36400
+            },
+            "djId": 0,
+            "no": 2,
+            "fee": 0,
+            "v": 5,
+            "mv": 0,
+            "name": "恋色マスタースパーク - Note of Downpour",
+            "id": 35040165,
+            "privilege": {
+                "id": 35040165,
+                "fee": 0,
+                "payed": 0,
+                "st": 0,
+                "pl": 320000,
+                "dl": 320000,
+                "sp": 7,
+                "cp": 1,
+                "subp": 1,
+                "cs": false,
+                "maxbr": 320000,
+                "fl": 320000,
+                "toast": false,
+                "flag": 0,
+                "preSell": false,
+                "playMaxbr": 320000,
+                "downloadMaxbr": 320000,
+                "chargeInfoList": [
+                    {
+                        "rate": 128000,
+                        "chargeUrl": null,
+                        "chargeMessage": null,
+                        "chargeType": 0
+                    },
+                    {
+                        "rate": 192000,
+                        "chargeUrl": null,
+                        "chargeMessage": null,
+                        "chargeType": 0
+                    },
+                    {
+                        "rate": 320000,
+                        "chargeUrl": null,
+                        "chargeMessage": null,
+                        "chargeType": 0
+                    },
+                    {
+                        "rate": 999000,
+                        "chargeUrl": null,
+                        "chargeMessage": null,
+                        "chargeType": 1
+                    }
+                ]
+            }
+        },
+        {
+            "rtUrls": [],
+            "ar": [
+                {
+                    "id": 21070,
+                    "name": "PHOENIX Project",
+                    "alia": [
+                        "稲井ゆう"
+                    ]
+                }
+            ],
+            "al": {
+                "id": 3308499,
+                "name": "東方8bit+Band+DanceアレンジCD ～霧雨魔法典～",
+                "picUrl": "https://p1.music.126.net/MKzOkEbgKdPC-HPJKlOlfA==/7928578350619949.jpg",
+                "pic_str": "7928578350619949",
+                "pic": 7928578350619949
+            },
+            "st": 0,
+            "noCopyrightRcmd": null,
+            "a": null,
+            "m": {
+                "br": 192000,
+                "fid": 0,
+                "size": 5324634,
+                "vd": -36300
+            },
+            "rtUrl": null,
+            "ftype": 0,
+            "cd": "1",
+            "rtype": 0,
+            "rurl": null,
+            "pst": 0,
+            "t": 0,
+            "alia": [],
+            "pop": 10,
+            "rt": null,
+            "mst": 9,
+            "cp": 663018,
+            "crbt": null,
+            "cf": "",
+            "dt": 221805,
+            "h": {
+                "br": 320000,
+                "fid": 0,
+                "size": 8874361,
+                "vd": -38400
+            },
+            "l": {
+                "br": 128000,
+                "fid": 0,
+                "size": 3549770,
+                "vd": -35200
+            },
+            "djId": 0,
+            "no": 3,
+            "fee": 0,
+            "v": 5,
+            "mv": 0,
+            "name": "蠢々秋月 - Retro Fake",
+            "id": 35040166,
+            "privilege": {
+                "id": 35040166,
+                "fee": 0,
+                "payed": 0,
+                "st": 0,
+                "pl": 320000,
+                "dl": 320000,
+                "sp": 7,
+                "cp": 1,
+                "subp": 1,
+                "cs": false,
+                "maxbr": 320000,
+                "fl": 320000,
+                "toast": false,
+                "flag": 0,
+                "preSell": false,
+                "playMaxbr": 320000,
+                "downloadMaxbr": 320000,
+                "chargeInfoList": [
+                    {
+                        "rate": 128000,
+                        "chargeUrl": null,
+                        "chargeMessage": null,
+                        "chargeType": 0
+                    },
+                    {
+                        "rate": 192000,
+                        "chargeUrl": null,
+                        "chargeMessage": null,
+                        "chargeType": 0
+                    },
+                    {
+                        "rate": 320000,
+                        "chargeUrl": null,
+                        "chargeMessage": null,
+                        "chargeType": 0
+                    },
+                    {
+                        "rate": 999000,
+                        "chargeUrl": null,
+                        "chargeMessage": null,
+                        "chargeType": 1
+                    }
+                ]
+            }
+        },
+        {
+            "rtUrls": [],
+            "ar": [
+                {
+                    "id": 21070,
+                    "name": "PHOENIX Project",
+                    "alia": [
+                        "稲井ゆう"
+                    ]
+                }
+            ],
+            "al": {
+                "id": 3308499,
+                "name": "東方8bit+Band+DanceアレンジCD ～霧雨魔法典～",
+                "picUrl": "https://p1.music.126.net/MKzOkEbgKdPC-HPJKlOlfA==/7928578350619949.jpg",
+                "pic_str": "7928578350619949",
+                "pic": 7928578350619949
+            },
+            "st": 0,
+            "noCopyrightRcmd": null,
+            "a": null,
+            "m": {
+                "br": 192000,
+                "fid": 0,
+                "size": 4539079,
+                "vd": -26900
+            },
+            "rtUrl": null,
+            "ftype": 0,
+            "cd": "1",
+            "rtype": 0,
+            "rurl": null,
+            "pst": 0,
+            "t": 0,
+            "alia": [],
+            "pop": 10,
+            "rt": null,
+            "mst": 9,
+            "cp": 663018,
+            "crbt": null,
+            "cf": "",
+            "dt": 189074,
+            "h": {
+                "br": 320000,
+                "fid": 0,
+                "size": 7565104,
+                "vd": -29300
+            },
+            "l": {
+                "br": 128000,
+                "fid": 0,
+                "size": 3026067,
+                "vd": -25700
+            },
+            "djId": 0,
+            "no": 4,
+            "fee": 0,
+            "v": 5,
+            "mv": 0,
+            "name": "真夜中のフェアリーダンス - Reflect The Request",
+            "id": 35040167,
+            "privilege": {
+                "id": 35040167,
+                "fee": 0,
+                "payed": 0,
+                "st": 0,
+                "pl": 320000,
+                "dl": 320000,
+                "sp": 7,
+                "cp": 1,
+                "subp": 1,
+                "cs": false,
+                "maxbr": 320000,
+                "fl": 320000,
+                "toast": false,
+                "flag": 0,
+                "preSell": false,
+                "playMaxbr": 320000,
+                "downloadMaxbr": 320000,
+                "chargeInfoList": [
+                    {
+                        "rate": 128000,
+                        "chargeUrl": null,
+                        "chargeMessage": null,
+                        "chargeType": 0
+                    },
+                    {
+                        "rate": 192000,
+                        "chargeUrl": null,
+                        "chargeMessage": null,
+                        "chargeType": 0
+                    },
+                    {
+                        "rate": 320000,
+                        "chargeUrl": null,
+                        "chargeMessage": null,
+                        "chargeType": 0
+                    },
+                    {
+                        "rate": 999000,
+                        "chargeUrl": null,
+                        "chargeMessage": null,
+                        "chargeType": 1
+                    }
+                ]
+            }
+        },
+        {
+            "rtUrls": [],
+            "ar": [
+                {
+                    "id": 21070,
+                    "name": "PHOENIX Project",
+                    "alia": [
+                        "稲井ゆう"
+                    ]
+                }
+            ],
+            "al": {
+                "id": 3308499,
+                "name": "東方8bit+Band+DanceアレンジCD ～霧雨魔法典～",
+                "picUrl": "https://p1.music.126.net/MKzOkEbgKdPC-HPJKlOlfA==/7928578350619949.jpg",
+                "pic_str": "7928578350619949",
+                "pic": 7928578350619949
+            },
+            "st": 0,
+            "noCopyrightRcmd": null,
+            "a": null,
+            "m": {
+                "br": 192000,
+                "fid": 0,
+                "size": 4582338,
+                "vd": -37700
+            },
+            "rtUrl": null,
+            "ftype": 0,
+            "cd": "1",
+            "rtype": 0,
+            "rurl": null,
+            "pst": 0,
+            "t": 0,
+            "alia": [],
+            "pop": 10,
+            "rt": null,
+            "mst": 9,
+            "cp": 663018,
+            "crbt": null,
+            "cf": "",
+            "dt": 190876,
+            "h": {
+                "br": 320000,
+                "fid": 0,
+                "size": 7637202,
+                "vd": -39900
+            },
+            "l": {
+                "br": 128000,
+                "fid": 0,
+                "size": 3054906,
+                "vd": -37000
+            },
+            "djId": 0,
+            "no": 5,
+            "fee": 0,
+            "v": 7,
+            "mv": 0,
+            "name": "霊知の太陽信仰 - Reflect The Request2",
+            "id": 35040168,
+            "privilege": {
+                "id": 35040168,
+                "fee": 0,
+                "payed": 0,
+                "st": 0,
+                "pl": 320000,
+                "dl": 320000,
+                "sp": 7,
+                "cp": 1,
+                "subp": 1,
+                "cs": false,
+                "maxbr": 320000,
+                "fl": 320000,
+                "toast": false,
+                "flag": 0,
+                "preSell": false,
+                "playMaxbr": 320000,
+                "downloadMaxbr": 320000,
+                "chargeInfoList": [
+                    {
+                        "rate": 128000,
+                        "chargeUrl": null,
+                        "chargeMessage": null,
+                        "chargeType": 0
+                    },
+                    {
+                        "rate": 192000,
+                        "chargeUrl": null,
+                        "chargeMessage": null,
+                        "chargeType": 0
+                    },
+                    {
+                        "rate": 320000,
+                        "chargeUrl": null,
+                        "chargeMessage": null,
+                        "chargeType": 0
+                    },
+                    {
+                        "rate": 999000,
+                        "chargeUrl": null,
+                        "chargeMessage": null,
+                        "chargeType": 1
+                    }
+                ]
+            }
+        },
+        {
+            "rtUrls": [],
+            "ar": [
+                {
+                    "id": 21070,
+                    "name": "PHOENIX Project",
+                    "alia": [
+                        "稲井ゆう"
+                    ]
+                }
+            ],
+            "al": {
+                "id": 3308499,
+                "name": "東方8bit+Band+DanceアレンジCD ～霧雨魔法典～",
+                "picUrl": "https://p1.music.126.net/MKzOkEbgKdPC-HPJKlOlfA==/7928578350619949.jpg",
+                "pic_str": "7928578350619949",
+                "pic": 7928578350619949
+            },
+            "st": 0,
+            "noCopyrightRcmd": null,
+            "a": null,
+            "m": {
+                "br": 192000,
+                "fid": 0,
+                "size": 6655625,
+                "vd": -2900
+            },
+            "rtUrl": null,
+            "ftype": 0,
+            "cd": "1",
+            "rtype": 0,
+            "rurl": null,
+            "pst": 0,
+            "t": 0,
+            "alia": [],
+            "pop": 10,
+            "rt": null,
+            "mst": 9,
+            "cp": 663018,
+            "crbt": null,
+            "cf": "",
+            "dt": 277263,
+            "h": {
+                "br": 320000,
+                "fid": 0,
+                "size": 11092679,
+                "vd": -5500
+            },
+            "l": {
+                "br": 128000,
+                "fid": 0,
+                "size": 4437097,
+                "vd": -1300
+            },
+            "djId": 0,
+            "no": 6,
+            "fee": 0,
+            "v": 6,
+            "mv": 0,
+            "name": "稲田姫様に叱られるから",
+            "id": 35040169,
+            "privilege": {
+                "id": 35040169,
+                "fee": 0,
+                "payed": 0,
+                "st": 0,
+                "pl": 320000,
+                "dl": 320000,
+                "sp": 7,
+                "cp": 1,
+                "subp": 1,
+                "cs": false,
+                "maxbr": 320000,
+                "fl": 320000,
+                "toast": false,
+                "flag": 0,
+                "preSell": false,
+                "playMaxbr": 320000,
+                "downloadMaxbr": 320000,
+                "chargeInfoList": [
+                    {
+                        "rate": 128000,
+                        "chargeUrl": null,
+                        "chargeMessage": null,
+                        "chargeType": 0
+                    },
+                    {
+                        "rate": 192000,
+                        "chargeUrl": null,
+                        "chargeMessage": null,
+                        "chargeType": 0
+                    },
+                    {
+                        "rate": 320000,
+                        "chargeUrl": null,
+                        "chargeMessage": null,
+                        "chargeType": 0
+                    },
+                    {
+                        "rate": 999000,
+                        "chargeUrl": null,
+                        "chargeMessage": null,
+                        "chargeType": 1
+                    }
+                ]
+            }
+        },
+        {
+            "rtUrls": [],
+            "ar": [
+                {
+                    "id": 21070,
+                    "name": "PHOENIX Project",
+                    "alia": [
+                        "稲井ゆう"
+                    ]
+                }
+            ],
+            "al": {
+                "id": 3308499,
+                "name": "東方8bit+Band+DanceアレンジCD ～霧雨魔法典～",
+                "picUrl": "https://p1.music.126.net/MKzOkEbgKdPC-HPJKlOlfA==/7928578350619949.jpg",
+                "pic_str": "7928578350619949",
+                "pic": 7928578350619949
+            },
+            "st": 0,
+            "noCopyrightRcmd": null,
+            "a": null,
+            "m": {
+                "br": 192000,
+                "fid": 0,
+                "size": 4450054,
+                "vd": -28400
+            },
+            "rtUrl": null,
+            "ftype": 0,
+            "cd": "1",
+            "rtype": 0,
+            "rurl": null,
+            "pst": 0,
+            "t": 0,
+            "alia": [],
+            "pop": 10,
+            "rt": null,
+            "mst": 9,
+            "cp": 663018,
+            "crbt": null,
+            "cf": "",
+            "dt": 185364,
+            "h": {
+                "br": 320000,
+                "fid": 0,
+                "size": 7416728,
+                "vd": -30600
+            },
+            "l": {
+                "br": 128000,
+                "fid": 0,
+                "size": 2966717,
+                "vd": -27600
+            },
+            "djId": 0,
+            "no": 7,
+            "fee": 0,
+            "v": 5,
+            "mv": 0,
+            "name": "恋色マジック - Magical nostalgia",
+            "id": 35040170,
+            "privilege": {
+                "id": 35040170,
+                "fee": 0,
+                "payed": 0,
+                "st": 0,
+                "pl": 320000,
+                "dl": 320000,
+                "sp": 7,
+                "cp": 1,
+                "subp": 1,
+                "cs": false,
+                "maxbr": 320000,
+                "fl": 320000,
+                "toast": false,
+                "flag": 0,
+                "preSell": false,
+                "playMaxbr": 320000,
+                "downloadMaxbr": 320000,
+                "chargeInfoList": [
+                    {
+                        "rate": 128000,
+                        "chargeUrl": null,
+                        "chargeMessage": null,
+                        "chargeType": 0
+                    },
+                    {
+                        "rate": 192000,
+                        "chargeUrl": null,
+                        "chargeMessage": null,
+                        "chargeType": 0
+                    },
+                    {
+                        "rate": 320000,
+                        "chargeUrl": null,
+                        "chargeMessage": null,
+                        "chargeType": 0
+                    },
+                    {
+                        "rate": 999000,
+                        "chargeUrl": null,
+                        "chargeMessage": null,
+                        "chargeType": 1
+                    }
+                ]
+            }
+        },
+        {
+            "rtUrls": [],
+            "ar": [
+                {
+                    "id": 21070,
+                    "name": "PHOENIX Project",
+                    "alia": [
+                        "稲井ゆう"
+                    ]
+                }
+            ],
+            "al": {
+                "id": 3308499,
+                "name": "東方8bit+Band+DanceアレンジCD ～霧雨魔法典～",
+                "picUrl": "https://p1.music.126.net/MKzOkEbgKdPC-HPJKlOlfA==/7928578350619949.jpg",
+                "pic_str": "7928578350619949",
+                "pic": 7928578350619949
+            },
+            "st": 0,
+            "noCopyrightRcmd": null,
+            "a": null,
+            "m": {
+                "br": 192000,
+                "fid": 0,
+                "size": 4500836,
+                "vd": -13700
+            },
+            "rtUrl": null,
+            "ftype": 0,
+            "cd": "1",
+            "rtype": 0,
+            "rurl": null,
+            "pst": 0,
+            "t": 0,
+            "alia": [],
+            "pop": 10,
+            "rt": null,
+            "mst": 9,
+            "cp": 663018,
+            "crbt": null,
+            "cf": "",
+            "dt": 187480,
+            "h": {
+                "br": 320000,
+                "fid": 0,
+                "size": 7501365,
+                "vd": -16000
+            },
+            "l": {
+                "br": 128000,
+                "fid": 0,
+                "size": 3000572,
+                "vd": -12000
+            },
+            "djId": 0,
+            "no": 8,
+            "fee": 0,
+            "v": 6,
+            "mv": 0,
+            "name": "華のさかづき大江山 - PSG",
+            "id": 35040171,
+            "privilege": {
+                "id": 35040171,
+                "fee": 0,
+                "payed": 0,
+                "st": 0,
+                "pl": 320000,
+                "dl": 320000,
+                "sp": 7,
+                "cp": 1,
+                "subp": 1,
+                "cs": false,
+                "maxbr": 320000,
+                "fl": 320000,
+                "toast": false,
+                "flag": 0,
+                "preSell": false,
+                "playMaxbr": 320000,
+                "downloadMaxbr": 320000,
+                "chargeInfoList": [
+                    {
+                        "rate": 128000,
+                        "chargeUrl": null,
+                        "chargeMessage": null,
+                        "chargeType": 0
+                    },
+                    {
+                        "rate": 192000,
+                        "chargeUrl": null,
+                        "chargeMessage": null,
+                        "chargeType": 0
+                    },
+                    {
+                        "rate": 320000,
+                        "chargeUrl": null,
+                        "chargeMessage": null,
+                        "chargeType": 0
+                    },
+                    {
+                        "rate": 999000,
+                        "chargeUrl": null,
+                        "chargeMessage": null,
+                        "chargeType": 1
+                    }
+                ]
+            }
+        },
+        {
+            "rtUrls": [],
+            "ar": [
+                {
+                    "id": 21070,
+                    "name": "PHOENIX Project",
+                    "alia": [
+                        "稲井ゆう"
+                    ]
+                }
+            ],
+            "al": {
+                "id": 3308499,
+                "name": "東方8bit+Band+DanceアレンジCD ～霧雨魔法典～",
+                "picUrl": "https://p1.music.126.net/MKzOkEbgKdPC-HPJKlOlfA==/7928578350619949.jpg",
+                "pic_str": "7928578350619949",
+                "pic": 7928578350619949
+            },
+            "st": 0,
+            "noCopyrightRcmd": null,
+            "a": null,
+            "m": {
+                "br": 192000,
+                "fid": 0,
+                "size": 5391089,
+                "vd": -29800
+            },
+            "rtUrl": null,
+            "ftype": 0,
+            "cd": "1",
+            "rtype": 0,
+            "rurl": null,
+            "pst": 0,
+            "t": 0,
+            "alia": [],
+            "pop": 10,
+            "rt": null,
+            "mst": 9,
+            "cp": 663018,
+            "crbt": null,
+            "cf": "",
+            "dt": 224574,
+            "h": {
+                "br": 320000,
+                "fid": 0,
+                "size": 8985120,
+                "vd": -32200
+            },
+            "l": {
+                "br": 128000,
+                "fid": 0,
+                "size": 3594074,
+                "vd": -28699
+            },
+            "djId": 0,
+            "no": 9,
+            "fee": 0,
+            "v": 5,
+            "mv": 0,
+            "name": "有頂天変 - The Demise of Nostalgia",
+            "id": 35040172,
+            "privilege": {
+                "id": 35040172,
+                "fee": 0,
+                "payed": 0,
+                "st": 0,
+                "pl": 320000,
+                "dl": 320000,
+                "sp": 7,
+                "cp": 1,
+                "subp": 1,
+                "cs": false,
+                "maxbr": 320000,
+                "fl": 320000,
+                "toast": false,
+                "flag": 0,
+                "preSell": false,
+                "playMaxbr": 320000,
+                "downloadMaxbr": 320000,
+                "chargeInfoList": [
+                    {
+                        "rate": 128000,
+                        "chargeUrl": null,
+                        "chargeMessage": null,
+                        "chargeType": 0
+                    },
+                    {
+                        "rate": 192000,
+                        "chargeUrl": null,
+                        "chargeMessage": null,
+                        "chargeType": 0
+                    },
+                    {
+                        "rate": 320000,
+                        "chargeUrl": null,
+                        "chargeMessage": null,
+                        "chargeType": 0
+                    },
+                    {
+                        "rate": 999000,
+                        "chargeUrl": null,
+                        "chargeMessage": null,
+                        "chargeType": 1
+                    }
+                ]
+            }
+        },
+        {
+            "rtUrls": [],
+            "ar": [
+                {
+                    "id": 21070,
+                    "name": "PHOENIX Project",
+                    "alia": [
+                        "稲井ゆう"
+                    ]
+                }
+            ],
+            "al": {
+                "id": 3308499,
+                "name": "東方8bit+Band+DanceアレンジCD ～霧雨魔法典～",
+                "picUrl": "https://p1.music.126.net/MKzOkEbgKdPC-HPJKlOlfA==/7928578350619949.jpg",
+                "pic_str": "7928578350619949",
+                "pic": 7928578350619949
+            },
+            "st": 0,
+            "noCopyrightRcmd": null,
+            "a": null,
+            "m": {
+                "br": 192000,
+                "fid": 0,
+                "size": 5244385,
+                "vd": -33300
+            },
+            "rtUrl": null,
+            "ftype": 0,
+            "cd": "1",
+            "rtype": 0,
+            "rurl": null,
+            "pst": 0,
+            "t": 0,
+            "alia": [],
+            "pop": 10,
+            "rt": null,
+            "mst": 9,
+            "cp": 663018,
+            "crbt": null,
+            "cf": "",
+            "dt": 218462,
+            "h": {
+                "br": 320000,
+                "fid": 0,
+                "size": 8740614,
+                "vd": -35700
+            },
+            "l": {
+                "br": 128000,
+                "fid": 0,
+                "size": 3496271,
+                "vd": -32100
+            },
+            "djId": 0,
+            "no": 10,
+            "fee": 0,
+            "v": 6,
+            "mv": 0,
+            "name": "Dim. Dream - The Birth of Modern",
+            "id": 35040173,
+            "privilege": {
+                "id": 35040173,
+                "fee": 0,
+                "payed": 0,
+                "st": 0,
+                "pl": 320000,
+                "dl": 320000,
+                "sp": 7,
+                "cp": 1,
+                "subp": 1,
+                "cs": false,
+                "maxbr": 320000,
+                "fl": 320000,
+                "toast": false,
+                "flag": 0,
+                "preSell": false,
+                "playMaxbr": 320000,
+                "downloadMaxbr": 320000,
+                "chargeInfoList": [
+                    {
+                        "rate": 128000,
+                        "chargeUrl": null,
+                        "chargeMessage": null,
+                        "chargeType": 0
+                    },
+                    {
+                        "rate": 192000,
+                        "chargeUrl": null,
+                        "chargeMessage": null,
+                        "chargeType": 0
+                    },
+                    {
+                        "rate": 320000,
+                        "chargeUrl": null,
+                        "chargeMessage": null,
+                        "chargeType": 0
+                    },
+                    {
+                        "rate": 999000,
+                        "chargeUrl": null,
+                        "chargeMessage": null,
+                        "chargeType": 1
+                    }
+                ]
+            }
+        }
+    ],
+    "code": 200,
+    "album": {
+        "songs": [],
+        "paid": false,
+        "onSale": false,
+        "mark": 0,
+        "description": null,
+        "blurPicUrl": "https://p1.music.126.net/MKzOkEbgKdPC-HPJKlOlfA==/7928578350619949.jpg",
+        "companyId": 0,
+        "tags": "",
+        "pic": 7928578350619949,
+        "picUrl": "https://p1.music.126.net/MKzOkEbgKdPC-HPJKlOlfA==/7928578350619949.jpg",
+        "status": 0,
+        "alias": [],
+        "artists": [
+            {
+                "img1v1Id": 18686200114669624,
+                "topicPerson": 0,
+                "trans": "",
+                "picUrl": "https://p1.music.126.net/6y-UleORITEDbvrOLV0Q8A==/5639395138885805.jpg",
+                "followed": false,
+                "alias": [],
+                "picId": 0,
+                "briefDesc": "",
+                "musicSize": 0,
+                "albumSize": 0,
+                "img1v1Url": "https://p1.music.126.net/VnZiScyynLG7atLIZ2YPkw==/18686200114669622.jpg",
+                "name": "PHOENIX Project",
+                "id": 21070,
+                "img1v1Id_str": "18686200114669622"
+            }
+        ],
+        "copyrightId": 0,
+        "picId": 7928578350619949,
+        "artist": {
+            "img1v1Id": 18686200114669624,
+            "topicPerson": 0,
+            "trans": "",
+            "picUrl": "https://p1.music.126.net/MCbGaWcKCHc41cEZ1P89fQ==/109951164109575438.jpg",
+            "followed": false,
+            "alias": [
+                "稲井ゆう"
+            ],
+            "picId": 109951164109575440,
+            "briefDesc": "",
+            "musicSize": 235,
+            "albumSize": 24,
+            "img1v1Url": "https://p1.music.126.net/VnZiScyynLG7atLIZ2YPkw==/18686200114669622.jpg",
+            "name": "PHOENIX Project",
+            "id": 21070,
+            "picId_str": "109951164109575438",
+            "img1v1Id_str": "18686200114669622"
+        },
+        "publishTime": 1419782400007,
+        "company": "C87",
+        "briefDesc": "懐かしのレトロ電子音・チップチューンを主軸に、\nバンド・クラブサウンドを織り交ぜた混沌…すなわちそれは魔法。\n\nジャケットには、イラストレーターしろが描いた不適な笑みを浮かべる魔理沙の姿!",
+        "commentThreadId": "R_AL_3_3308499",
+        "subType": "伴奏版",
+        "name": "東方8bit+Band+DanceアレンジCD ～霧雨魔法典～",
+        "id": 3308499,
+        "type": "专辑",
+        "size": 10,
+        "info": {
+            "commentThread": {
+                "id": "R_AL_3_3308499",
+                "resourceInfo": {
+                    "id": 3308499,
+                    "userId": -1,
+                    "name": "東方8bit+Band+DanceアレンジCD ～霧雨魔法典～",
+                    "imgUrl": "https://p1.music.126.net/MKzOkEbgKdPC-HPJKlOlfA==/7928578350619949.jpg",
+                    "creator": null,
+                    "encodedId": null,
+                    "subTitle": null,
+                    "webUrl": null
+                },
+                "resourceType": 3,
+                "commentCount": 14,
+                "likedCount": 0,
+                "shareCount": 6,
+                "hotCount": 0,
+                "latestLikedUsers": null,
+                "resourceTitle": "東方8bit+Band+DanceアレンジCD ～霧雨魔法典～",
+                "resourceOwnerId": -1,
+                "resourceId": 3308499
+            },
+            "latestLikedUsers": null,
+            "liked": false,
+            "comments": null,
+            "resourceType": 3,
+            "resourceId": 3308499,
+            "commentCount": 14,
+            "likedCount": 0,
+            "shareCount": 6,
+            "threadId": "R_AL_3_3308499"
+        }
+    }
+}
