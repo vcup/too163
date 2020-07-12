@@ -1,134 +1,108 @@
+import time
+
 import urllib3
 import json
 
 
-class Net_Error(Exception):
-    pass
+class RequestUrl:
+
+    def __init__(self, url, headers=None, **urlopen_kw):
+        self.url = url
+        self.headers = headers
+        self.http = urllib3.PoolManager()
+        self.urlopen_kw = urlopen_kw
+
+    def __get(self, mode: str, fields: dict, code: str) -> dict:
+        while True:
+            res = self.http.request(mode, self.url, fields, headers=self.headers, **self.urlopen_kw)
+            if res.status == 200:
+                return json.loads(res.data.decode(code))
+
+    def get(self, code='UTF-8', **fields):
+        return self.__get('get', fields, code)
+
+    def post(self, code='UTF-8', **fields):
+        return self.__get('POST', fields, code)
 
 
-class req_url:
-
-    def __init__(self, parm: dict, headers: dict = None):
-        self.http = urllib3.PoolManager(headers=headers)
-        self.path = str(parm.pop(None)) if parm.get(None) else None
-        parm_list = []
-        for k, v in parm.items():
-            parm_list.append(f'{k}={v}')
-        self.parms = tuple(parm_list)
-
-    def make_(self, url) -> str:
-        if self.path:
-            url = url + '/' if url[-1] != '/' else url  # if url last symbol not '/', add to
-            url = (url + self.path) if self.path else url  # if self.path not None, add to
-        if self.parms:
-            url = url + '?' if url[-1] != '?' else url  # if url last symbol not '?', add to
-        url += '&'.join(self.parms)  # add parm to url
-        return url
-
-    def __truediv__(self, url: str) -> urllib3.PoolManager.request:
-        req = self.http.request('get', url=self.make_(url))
-        count = 0
-        while req.status != 200:
-            count += 1
-            if count > 10:
-                raise Net_Error(f'Network GET Error Code:{req.status}')
-            else:
-                req = self.http.request('get', url=self.make_(url))
-        return req
-
-    __rtruediv__ = __truediv__
-    set = __init__
+class SearchType:
+    Song = 1
+    Album = 10
+    Artist = 100
+    PlayList = 1000
+    User = 1002
+    MV = 1004
+    Lyric = 1006
+    Radio = 1009
+    Video = 1014
+    Comprehensive = 1018
 
 
-def try_get_data(req: req_url, url: str) -> dict:
-    req_obj = code = 0
-    while code != 200:
-        req_obj = req / url
-        data = json.loads(req_obj.data.decode('UTF-8'))
-        code = data.get('code')
-        # print(data, '\n', req.make_(url)) # ; time.sleep(5.88)
-    return json.loads(req_obj.data.decode('UTF-8'))
+url = 'https://127.0.0.1:3000'
 
 
-def resource(sid: int, limit: int, offset: int = 0):
-    req = req_url({'limit': limit, 'offset': limit * offset})
-    url = 'https://music.163.com/api/v1/resource/comments/R_SO_4_' + str(
-        sid)
-    return try_get_data(req, url)
-
-
-def search(search_key: str, search_type: int, limit: int, offset: int = 0):
-    # req = req_url({'s': search_key, 'type': search_type, 'limit': limit, 'offset': limit * offset})
-    req = req_url({'keywords': search_key, 'type': search_type, 'limit': limit, 'offset': limit * offset})
-    old_url = 'https://music.163.com/api/search/get/web'
-    return try_get_data(req, 'http://localhost:3000/search?')
+def search(kw: str, res_type: int, limit: int, page: int = 0):
+    res = RequestUrl(f'{url}/search')
+    return res.post(keywords=kw, type=res_type, limit=limit, offset=page)
 
 
 def lyric(sid: int, lrc: bool = True, tlrc: bool = True):
     parm = {'id': sid}
+    res = RequestUrl(f'{url}/lyric')
     if lrc:
         parm.setdefault('lv', -1)
     if tlrc:
         parm.setdefault('tv', -1)
-    req = req_url(parm)
-    old_url = 'https://music.163.com/api/song/lyric'
-    return try_get_data(req, 'http://localhost:3000/lyric?')
+    return res.post(**parm)
 
 
-def song_detail(sid: [int]):
-    sid = sid if isinstance(sid, list) else [sid]
-    req = req_url({'ids': ','.join(map(lambda i: str(i), sid))})
-    old_url = 'https://music.163.com/api/song/detail''?ids=[id, id]'
-    return try_get_data(req, 'http://localhost:3000/song/detail?')
+def song(*sid: int):
+    res = RequestUrl(f'{url}/song/detail')
+    return res.post(ids=str(sid)[1:-1])
 
 
 def playlist(pid: int):
-    req = req_url({'id': pid})
-    old_url = 'https://music.163.com/api/playlist/detail'
-    return try_get_data(req, 'http://localhost:3000/playlist/detail?')
+    res = RequestUrl(f'{url}/playlist/detail')
+    return res.post(id=pid)
 
 
 def user(uid: int):
-    req = req_url({None: uid})
-    return try_get_data(req, 'https://music.163.com/api/v1/user/detail')
+    res = RequestUrl(f'{url}/user/detail')
+    return res.post(id=uid)
 
 
 def user_playlist(uid: int, limit: int = 999999):
-    req = req_url({'uid': uid, 'limit': limit})
-    old_url = 'https://music.163.com/api/user/playlist'
-    return try_get_data(req, 'http://localhost:3000/user/playlist')
+    res = RequestUrl(f'{url}/user/playlist')
+    return res.post(uid=uid, limit=limit)
 
 
 def album(album_id):
-    req = req_url({None: album_id})
-    old_url = 'https://music.163.com/api/album'
-    return try_get_data(req, 'https://music.163.com/api/album')
+    res = RequestUrl(f'{url}/album')
+    return res.post(id=album_id)
 
 
-def artist(artist_id):
-    req = req_url({None: artist_id})
-    return try_get_data(req, 'https://music.163.com/api/artist')
+def artist(aid):
+    res = RequestUrl(f'{url}/artists')
+    return res.post(id=aid)
 
 
-def artist_album(artist_id: int):
-    req = req_url({None: artist_id})
-    return try_get_data(req, 'http://music.163.com/api/artist/albums')
+def artist_album(artist_id: int, limit: int = 2147483647):
+    res = RequestUrl(f'{url}/artist/album')
+    return res.post(id=artist_id, limit=limit)
 
 
-def mv(mvid: int):
-    req = req_url({'id': mvid, 'type': 'mp4'})
-    return try_get_data(req, 'https://music.163.com/api/mv/detail')
+def mv_url(mv_id: int):
+    res = RequestUrl(f'{url}/mv/url')
+    return res.post(id=mv_id)
 
 
-def player_song(ids: [int], br: int = 2147483647):
+def player_song(*ids: int, br: int = 2147483647):
     """提供多首歌的在线试听地址，无法获取无损但可以获取VIP歌曲地址"""
-    ids = ids if isinstance(ids, list) else [ids]  # if ids is not list, convert to list
-    req = req_url({'ids': ids, 'br': br})
-    return try_get_data(req, 'https://music.163.com/api/song/enhance/player/url')
+    res = RequestUrl(f'{url}/song/url')
+    return res.post(ids=str(ids)[1:-1], br=br)
 
 
 def download_file(sid: int, br: int = 2147483647):
     """提供单首歌的下载地址，可以获取无损但无法获取VIP歌曲(任何码率)"""
-    req = req_url({'id': sid, 'br': br})
-    return try_get_data(req, 'https://music.163.com/api/song/enhance/download/url')
-
+    res = RequestUrl('https://music.163.com/api/song/enhance/download/url')
+    return res.post(id=sid, br=br)
