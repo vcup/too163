@@ -1,9 +1,5 @@
 import urllib3
 import json
-from Crypto.Cipher import AES
-import base64
-import string, random
-import binascii
 
 
 class Net_Error(Exception):
@@ -42,45 +38,6 @@ class req_url:
 
     __rtruediv__ = __truediv__
     set = __init__
-
-
-class crypto_parm:
-
-    def __init__(self):
-        self.modulus = b'00e0b509f6259df8642dbc35662901477df22677ec152b5ff68ace615bb7b725152b3ab17a876aea8a5aa7' \
-                       b'6d2e417629ec4ee341f56135fccf695280104e0312ecbda92557c93870114af6c9d05c4f7f0c3685b7a46b' \
-                       b'ee255932575cce10b424d813cfe4875d3e82047b97ddef52741d546b8e289dc6935b3ece0462db0a22b8e7'
-        self.nonce = b'0CoJUm6Qyw8W8jud'
-        self.pubKey = b'010001'
-        self.iv = b'0102030405060708'
-        self.pad = lambda s: ((s.decode('UTF-8') if isinstance(s, bytes) else s) + (16 - len(s) % 16) * chr(0)).encode('UTF-8')
-
-    def AES_encrypto(self, text, key):
-        text = self.pad(text)
-        encrypto = AES.new(key, 2, self.iv)
-        text = encrypto.encrypt(text)
-        return base64.b64encode(text)
-
-    def AES_decrypto(self, text, key):
-        text = self.pad(text)
-        encrypto = AES.new(key, 2, self.iv)
-        text = base64.b64encode(text)
-        return encrypto.decrypt(text)
-
-    def RSA_encrypto(self):
-        text = self.AES_key[::-1]
-        rs = int(binascii.b2a_hex(text), 16)**int(self.pubKey, 16)%int(self.modulus, 16)
-        return format(rs, 'x').zfill(256)
-
-    def RSA_decrypto(self):
-        """不会"""
-        text = self.AES_key[::-1]
-
-    def __call__(self, **parm) -> dict:
-        self.parm = json.dumps(parm)
-        self.AES_key = (''.join(random.sample(string.printable[:62], 16))).encode('UTF-8') # 随机生成16位由a-Z+0-9组成的字符串
-        ciphertext = self.AES_encrypto(self.parm, self.nonce)
-        return {'params': self.AES_encrypto(ciphertext, self.AES_key).decode('utf-8'), 'enSecKey': self.RSA_encrypto()}
 
 
 def try_get_data(req: req_url, url: str) -> dict:

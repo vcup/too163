@@ -1,55 +1,63 @@
 {
     "songs": [
         {
-            "name": "物凄いあややがぶっちゃけ物凄いうた",
-            "id": 22808851,
+            "name": "ネコソギマターバップ",
+            "id": 30251525,
             "pst": 0,
             "t": 0,
             "ar": [
                 {
-                    "id": 19780,
-                    "name": "Halozy",
+                    "id": 15396,
+                    "name": "sasakure.UK",
+                    "tns": [],
+                    "alias": []
+                },
+                {
+                    "id": 1141075,
+                    "name": "重音テト",
                     "tns": [],
                     "alias": []
                 }
             ],
-            "alia": [],
-            "pop": 25,
+            "alia": [
+                "Nekosogi-Matter-Bop"
+            ],
+            "pop": 65,
             "st": 0,
-            "rt": "",
-            "fee": 0,
-            "v": 9,
+            "rt": null,
+            "fee": 8,
+            "v": 86,
             "crbt": null,
             "cf": "",
             "al": {
-                "id": 2096642,
-                "name": "Tonic Triangle",
-                "picUrl": "https://p2.music.126.net/xKYzx-e9TV-Yk06K56nNpw==/915893185961110.jpg",
+                "id": 3095059,
+                "name": "摩訶摩謌モノモノシー",
+                "picUrl": "https://p2.music.126.net/Ypb0iUHdKtPwqm2BUma42g==/7926379324744409.jpg",
                 "tns": [],
-                "pic": 915893185961110
+                "pic": 7926379324744409
             },
-            "dt": 221000,
+            "dt": 245000,
             "h": {
                 "br": 320000,
                 "fid": 0,
-                "size": 8843167,
-                "vd": -41500
+                "size": 9802231,
+                "vd": -25300
             },
             "m": {
                 "br": 192000,
                 "fid": 0,
-                "size": 5305978,
-                "vd": -39000
+                "size": 5881356,
+                "vd": -22800
             },
             "l": {
                 "br": 128000,
                 "fid": 0,
-                "size": 3537384,
-                "vd": -37700
+                "size": 3920919,
+                "vd": -21099
             },
             "a": null,
             "cd": "1",
-            "no": 6,
+            "no": 5,
             "rtUrl": null,
             "ftype": 0,
             "rtUrls": [],
@@ -60,30 +68,30 @@
             "originCoverType": 0,
             "single": 0,
             "noCopyrightRcmd": null,
-            "mv": 0,
+            "mv": 5403674,
+            "mst": 9,
+            "cp": 729012,
             "rtype": 0,
             "rurl": null,
-            "mst": 9,
-            "cp": 663018,
-            "publishTime": 1325174400007
+            "publishTime": 1418745600000
         }
     ],
     "privileges": [
         {
-            "id": 22808851,
-            "fee": 0,
+            "id": 30251525,
+            "fee": 8,
             "payed": 0,
             "st": 0,
-            "pl": 320000,
-            "dl": 999000,
+            "pl": 128000,
+            "dl": 0,
             "sp": 7,
             "cp": 1,
             "subp": 1,
             "cs": false,
             "maxbr": 999000,
-            "fl": 320000,
+            "fl": 128000,
             "toast": false,
-            "flag": 0,
+            "flag": 256,
             "preSell": false,
             "playMaxbr": 999000,
             "downloadMaxbr": 999000,
@@ -98,13 +106,13 @@
                     "rate": 192000,
                     "chargeUrl": null,
                     "chargeMessage": null,
-                    "chargeType": 0
+                    "chargeType": 1
                 },
                 {
                     "rate": 320000,
                     "chargeUrl": null,
                     "chargeMessage": null,
-                    "chargeType": 0
+                    "chargeType": 1
                 },
                 {
                     "rate": 999000,

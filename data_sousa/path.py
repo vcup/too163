@@ -35,7 +35,16 @@ class key_path:
         """使用分隔后的路径迭代出路径指向的值"""
         data = self.data
         for key in paths:
-            data = data[key]
+            try:
+                data = data[key]
+            except (TypeError, KeyError) as error:
+                if isinstance(error, TypeError):
+                    error_type = TypeError
+                else:
+                    error_type = KeyError
+                raise error_type(
+                    f'{error}    \n    key: {key}, keys: {data.keys() if isinstance(data, dict) else data}'
+                )
         return data
 
     def split_path(self, path: str = None):
@@ -54,7 +63,7 @@ class key_path:
         paths = map(self.Characters_inside_the_symbol, self.split_path())
         return self.get_value(paths)
 
-    def return_values(self, paths):
+    def return_values(self, *paths: str):
         """返回多个路径对应的值"""
         return (self.__truediv__(path) for path in paths)
 

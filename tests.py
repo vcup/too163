@@ -1,70 +1,81 @@
 import datetime
 import time
-import unittest
 from json import loads
+from unittest import TestCase, main
 
 import test_item
-from data_sousa import song, album, key_path
+from data_sousa import Song, album, key_path
 
 
-class TestDataSousa(unittest.TestCase):
+class TestDataSousa(TestCase):
     pass
 
 
 class TestSong(TestDataSousa):
+
     @classmethod
     def setUpClass(cls) -> None:
-        cls.song_dict_751472 = test_item.song_751472
-        cls.song_dict_22808851 = test_item.song_22808851
-        cls.song_dict_1293905025 = test_item.song_1293905025
-        cls.song = song(cls.song_dict_751472, cls.song_dict_22808851, cls.song_dict_1293905025)
+        """测试用例存在耦合问题，期望输出被写死在方法内"""
+        song_x3 = test_item.song_0, test_item.song_1, test_item.song_2
+        cls.song = Song(*song_x3)
+        cls.song_dict = key_path(test_item.song_3to1, point='songs')
 
     def setUp(self) -> None:
-        self.assertEqual('SongNew', self.song.__class__.__name__)
+        self.assertEqual('Song', self.song.__class__.__name__)
+
+    def bs(self, p: str):
+        return (s + p for s in ['[0]/', '[1]/', '[2]/'])
+
+    def test_init(self):
+        self.assertRaisesRegex(TypeError, '至少需要一个参数，传入了0个',  self.song.__init__)
 
     def test_album(self):
-        self.assertEqual(73747, self.song.album().get('id'))
+        self.assertEqual(self.song_dict / '[0]/al/id', self.song.album().get('id'))
 
     def test_album_iter(self):
-        self.assertEqual([73747, 2096642, 71851620], [al.get('id') for al in self.song.album_iter()])
+        self.assertEqual(list(self.song_dict.return_values(*self.bs('al'))),
+                         list(self.song.album_iter()))
 
     def test_artist(self):
-        self.assertEqual(16114, self.song.artist().get('id'))
+        self.assertEqual(self.song_dict / '[0]/ar/[0]/', self.song.artist())
 
     def test_artist_iter(self):
-        self.assertEqual([16114], [ar.get('id') for ar in self.song.artist_iter()])
+        self.assertEqual(self.song_dict / '[0]/ar', list(self.song.artist_iter()))
 
     def test_all_artist_iter(self):
-        self.assertEqual([16114, 19780, 28083218], [ar.get('id') for ar in self.song.all_artist_iter()])
+        self.assertEqual([*self.song_dict.return_values(*self.bs('ar'))],
+                         [*self.song.all_artist_iter()])
 
     def test_alia(self):
-        self.assertEqual('琪露诺的完美算数教室', self.song.alia())
+        self.assertEqual(self.song_dict / '[0]/alia/[0]', self.song.alia())
         
     def test_alias_iter(self):
-        self.assertEqual(['琪露诺的完美算数教室'], list(self.song.alias_iter()))
+        self.assertEqual(self.song_dict / '[0]/alia', list(self.song.alias_iter()))
     
     def test_all_alias_iter(self):
-        self.assertEqual(['琪露诺的完美算数教室', 'TV动画《Happy Sugar Life》片头曲 / TVアニメ「ハッピーシュガーライフ」OPテーマ'],
-                         list(self.song.all_alias_iter()))
+        self.assertEqual([*self.song_dict.return_values(*self.bs('alia'))],
+                         [*self.song.all_alias_iter()])
 
     def test_name(self):
-        self.assertEqual('チルノのパーフェクトさんすう教室', self.song.name())
+        self.assertEqual(self.song_dict / '[0]/name', self.song.name())
 
     def test_name_iter(self):
-        self.assertEqual(['チルノのパーフェクトさんすう教室', '物凄いあややがぶっちゃけ物凄いうた',
-                          'ワンルームシュガーライフ (TV size ver.)'], list(self.song.name_iter()))
+        self.assertEqual([*self.song_dict.return_values(*self.bs('name'))],
+                         [*self.song.name_iter()])
 
     def test_id(self):
-        self.assertEqual(751472, self.song.id())
+        self.assertEqual(self.song_dict / '[0]/id', self.song.id())
 
     def test_id_iter(self):
-        self.assertEqual([751472, 22808851, 1293905025], list(self.song.id_iter()))
+        self.assertEqual([*self.song_dict.return_values(*self.bs('id'))],
+                         [*self.song.id_iter()])
 
-    def test_mvid(self):
-        self.assertEqual(5326125, self.song.mvid())
+    def test_mv(self):
+        self.assertEqual(self.song_dict / '[0]/mv', self.song.mv())
 
-    def test_mvid_iter(self):
-        self.assertEqual([5326125, 0, 0], list(self.song.mvid_iter()))
+    def test_mv_iter(self):
+        self.assertEqual([*self.song_dict.return_values(*self.bs('mv'))],
+                         [*self.song.mv_iter()])
 
 
 class TestAlbum(TestDataSousa):
@@ -131,4 +142,4 @@ class TestAlbum(TestDataSousa):
 
 
 if __name__ == '__main__':
-    unittest.main()
+    main()

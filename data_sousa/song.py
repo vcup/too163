@@ -1,80 +1,17 @@
 from data_sousa import key_path
-from typing import Union, Generator, Any
+from typing import Union, Generator, Any, Dict, List
 
 
-class SongOld:
-    """解析来自 music.163.com/api/song/detail 的数据
-    API一次返回多个歌曲的详细信息"""
+class Song:
 
     def __init__(self, *data: dict):
         new_songs = [s for ss in data for s in ss.get('songs')]
-        data[0]['songs'] = new_songs
         try:
-            self.path = key_path(data[0], point='songs')
+            data[0]['songs'] = new_songs
         except IndexError:
-            raise TypeError(f'需要至少一个参数，传入了{len(data)}个')
+            raise TypeError(f'至少需要一个参数，传入了{len(data)}个')
+        self.path = key_path(data[0], point='songs')
         self.len = len(self.path)
-
-    def album(self, i: int = 0) -> dict:
-        """指定索引位置的歌曲的专辑信息"""
-        return self.path / f'[{i}]/album'
-
-    def album_iter(self) -> Generator[dict, Any, None]:
-        """迭代所有请求歌曲的专辑信息"""
-        return (self.album(i) for i in range(self.len))
-
-    def artist(self, i1: int = 0, i2: int = 0) -> dict:
-        """指定索引位置的歌曲的单个歌手信息"""
-        return self.path / f'[{i1}]/artists/[{i2}]'
-
-    def artist_iter(self, i1: int = 0) -> Generator[dict, Any, None]:
-        """迭代指定索引位置的歌曲的所有歌手信息"""
-        return (self.artist(i1, i2) for i2 in range(len(self.path / f'[{i1}]/artists')))
-
-    def all_artist_iter(self) -> Generator[dict, Any, None]:
-        """迭代所有请求歌曲的所有歌手信息"""
-        return (a for i1 in range(self.len) for a in self.artist_iter(i1))
-
-    def alia(self, i1: int = 0, i2: int = 0) -> str:
-        """指定索引位置的歌曲的单个别名"""
-        return self.path / f'[{i1}]/alias/[{i2}]'
-
-    def alias_iter(self, i1: int = 0) -> Generator[str, Any, None]:
-        """迭代指定索引位置的歌曲的所有别名"""
-        return (self.alia(i1, i2) for i2 in range(len(self.path / f'[{i1}]/artists')))
-
-    def all_alias_iter(self) -> Generator[dict, Any, None]:
-        """迭代所有请求歌曲的所有别名"""
-        return (a for i1 in range(self.len) for a in self.artist_iter(i1))
-
-    def name(self, i: int = 0) -> str:
-        """指定索引位置的歌曲的名字"""
-        return self.path / f'[{i}]/name'
-
-    def name_iter(self) -> Generator[str, Any, None]:
-        """迭代所有请求歌曲的名字"""
-        return (self.name(i) for i in range(self.len))
-
-    def id(self, i: int = 0) -> int:
-        """指定索引位置的歌曲的ID"""
-        return self.path / f'[{i}]/id'
-
-    def id_iter(self) -> Generator[int, Any, None]:
-        """迭代所有请求歌曲的ID"""
-        return (self.id(i) for i in range(self.len))
-
-    def mvid(self, i: int = 0) -> int:
-        """指定索引位置的歌曲的MV的ID"""
-        return self.path / f'[{i}]/mvid'
-
-    def mvid_iter(self) -> Generator[int, Any, None]:
-        """迭代所有请求歌曲的MV的ID"""
-        return (self.mvid(i) for i in range(self.len))
-
-
-class SongNew(SongOld):
-    """解析来自 music.163.com/weapi/v3/playlist/detail 的数据
-    API一次返回多个歌曲的详细信息"""
 
     def album(self, i: int = 0) -> dict:
         """指定索引位置的歌曲的专辑信息"""
@@ -92,9 +29,13 @@ class SongNew(SongOld):
         """迭代指定索引位置的歌曲的所有歌手信息"""
         return (self.artist(i1, i2) for i2 in range(len(self.path / f'[{i1}]/ar')))
 
-    def all_artist_iter(self) -> Generator[dict, Any, None]:
+    def all_artist_iter(self) -> Generator[List[Dict], Any, None]:
         """迭代所有请求歌曲的所有歌手信息"""
-        return (a for i1 in range(self.len) for a in self.artist_iter(i1))
+        for i in range(self.len):
+            ars = []
+            for a in self.artist_iter(i):
+                ars.append(a)
+            yield ars
 
     def alia(self, i1: int = 0, i2: int = 0) -> str:
         """指定索引位置的歌曲的单个别名"""
@@ -106,7 +47,11 @@ class SongNew(SongOld):
 
     def all_alias_iter(self) -> Generator[str, Any, None]:
         """迭代所有请求歌曲的所有别名"""
-        return (alia for i in range(self.len) for alia in self.alias_iter(i))
+        for i in range(self.len):
+            ars = []
+            for a in self.alias_iter(i):
+                ars.append(a)
+            yield ars
 
     def name(self, i: int = 0) -> str:
         """指定索引位置的歌曲的名字"""
@@ -124,16 +69,18 @@ class SongNew(SongOld):
         """迭代所有请求歌曲的ID"""
         return (self.id(i) for i in range(self.len))
 
-    def mvid(self, i: int = 0) -> int:
+    def mv(self, i: int = 0) -> int:
         """指定索引位置的歌曲的MV的ID"""
         return self.path / f'[{i}]/mv'
 
-    def mvid_iter(self) -> Generator[int, Any, None]:
+    def mv_iter(self) -> Generator[int, Any, None]:
         """迭代所有请求歌曲的MV的ID"""
-        return (self.mvid(i) for i in range(self.len))
+        return (self.mv(i) for i in range(self.len))
 
+    def album_no(self, i) -> int:
+        """返回指定位置单曲在所属专辑中的序号"""
+        return self.path / f'{i}/no'
 
-def song(*data: dict) -> Union[SongOld, SongNew]:
-    if data[0].get('songs')[0].get('ar'):
-        return SongNew(*data)
-    return SongOld(*data)
+    def album_no_iter(self) -> Generator[int, Any, None]:
+        """迭代请求歌曲在所属专辑中的序号"""
+        return (self.album_no(i) for i in range(self.len))

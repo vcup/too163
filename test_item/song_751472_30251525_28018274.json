@@ -1,0 +1,368 @@
+{
+    "songs": [
+        {
+            "name": "チルノのパーフェクトさんすう教室",
+            "id": 751472,
+            "pst": 0,
+            "t": 0,
+            "ar": [
+                {
+                    "id": 16114,
+                    "name": "Alternative ending",
+                    "tns": [],
+                    "alias": []
+                }
+            ],
+            "alia": [
+                "琪露诺的完美算数教室"
+            ],
+            "pop": 95,
+            "st": 0,
+            "rt": "",
+            "fee": 0,
+            "v": 22,
+            "crbt": null,
+            "cf": "",
+            "al": {
+                "id": 73747,
+                "name": "東方氷雪歌集",
+                "picUrl": "https://p1.music.126.net/UZilxJ8yW3WnrfXV92QLzg==/920291232448715.jpg",
+                "tns": [],
+                "pic": 920291232448715
+            },
+            "dt": 278640,
+            "h": {
+                "br": 320000,
+                "fid": 0,
+                "size": 11148060,
+                "vd": -3
+            },
+            "m": {
+                "br": 192000,
+                "fid": 0,
+                "size": 6688853,
+                "vd": -3
+            },
+            "l": {
+                "br": 128000,
+                "fid": 0,
+                "size": 4459250,
+                "vd": -3
+            },
+            "a": null,
+            "cd": "1",
+            "no": 1,
+            "rtUrl": null,
+            "ftype": 0,
+            "rtUrls": [],
+            "djId": 0,
+            "copyright": 2,
+            "s_id": 0,
+            "mark": 262144,
+            "originCoverType": 0,
+            "single": 0,
+            "noCopyrightRcmd": null,
+            "mv": 5326125,
+            "mst": 9,
+            "cp": 0,
+            "rtype": 0,
+            "rurl": null,
+            "publishTime": 1225555200000
+        },
+        {
+            "name": "ネコソギマターバップ",
+            "id": 30251525,
+            "pst": 0,
+            "t": 0,
+            "ar": [
+                {
+                    "id": 15396,
+                    "name": "sasakure.UK",
+                    "tns": [],
+                    "alias": []
+                },
+                {
+                    "id": 1141075,
+                    "name": "重音テト",
+                    "tns": [],
+                    "alias": []
+                }
+            ],
+            "alia": [
+                "Nekosogi-Matter-Bop"
+            ],
+            "pop": 65,
+            "st": 0,
+            "rt": null,
+            "fee": 8,
+            "v": 86,
+            "crbt": null,
+            "cf": "",
+            "al": {
+                "id": 3095059,
+                "name": "摩訶摩謌モノモノシー",
+                "picUrl": "https://p2.music.126.net/Ypb0iUHdKtPwqm2BUma42g==/7926379324744409.jpg",
+                "tns": [],
+                "pic": 7926379324744409
+            },
+            "dt": 245000,
+            "h": {
+                "br": 320000,
+                "fid": 0,
+                "size": 9802231,
+                "vd": -25300
+            },
+            "m": {
+                "br": 192000,
+                "fid": 0,
+                "size": 5881356,
+                "vd": -22800
+            },
+            "l": {
+                "br": 128000,
+                "fid": 0,
+                "size": 3920919,
+                "vd": -21099
+            },
+            "a": null,
+            "cd": "1",
+            "no": 5,
+            "rtUrl": null,
+            "ftype": 0,
+            "rtUrls": [],
+            "djId": 0,
+            "copyright": 2,
+            "s_id": 0,
+            "mark": 9007199255003136,
+            "originCoverType": 0,
+            "single": 0,
+            "noCopyrightRcmd": null,
+            "mv": 5403674,
+            "mst": 9,
+            "cp": 729012,
+            "rtype": 0,
+            "rurl": null,
+            "publishTime": 1418745600000
+        },
+        {
+            "name": "回レ! 雪月花",
+            "id": 28018274,
+            "pst": 0,
+            "t": 0,
+            "ar": [
+                {
+                    "id": 16486,
+                    "name": "原田ひとみ",
+                    "tns": [],
+                    "alias": []
+                },
+                {
+                    "id": 16906,
+                    "name": "茅野愛衣",
+                    "tns": [],
+                    "alias": []
+                },
+                {
+                    "id": 17554,
+                    "name": "小倉唯",
+                    "tns": [],
+                    "alias": []
+                }
+            ],
+            "alia": [
+                "TV动画《機巧少女は傷つかない》片尾曲 ；TVアニメ「機巧少女は傷つかない」EDテーマ"
+            ],
+            "pop": 100,
+            "st": 0,
+            "rt": "",
+            "fee": 0,
+            "v": 20,
+            "crbt": null,
+            "cf": "",
+            "al": {
+                "id": 2713036,
+                "name": "回レ! 雪月花",
+                "picUrl": "https://p2.music.126.net/UrbsnGXM8_cc3nLd3Ru3zw==/18541064580889962.jpg",
+                "tns": [],
+                "pic_str": "18541064580889962",
+                "pic": 18541064580889960
+            },
+            "dt": 234680,
+            "h": {
+                "br": 320000,
+                "fid": 0,
+                "size": 9389496,
+                "vd": -42199
+            },
+            "m": {
+                "br": 192000,
+                "fid": 0,
+                "size": 5633714,
+                "vd": -39900
+            },
+            "l": {
+                "br": 128000,
+                "fid": 0,
+                "size": 3755824,
+                "vd": -38700
+            },
+            "a": null,
+            "cd": "1",
+            "no": 1,
+            "rtUrl": null,
+            "ftype": 0,
+            "rtUrls": [],
+            "djId": 0,
+            "copyright": 2,
+            "s_id": 0,
+            "mark": 9007199255003136,
+            "originCoverType": 0,
+            "single": 0,
+            "noCopyrightRcmd": null,
+            "mv": 0,
+            "mst": 9,
+            "cp": 663018,
+            "rtype": 0,
+            "rurl": null,
+            "publishTime": 1385481600007
+        }
+    ],
+    "privileges": [
+        {
+            "id": 751472,
+            "fee": 0,
+            "payed": 0,
+            "st": 0,
+            "pl": 320000,
+            "dl": 999000,
+            "sp": 7,
+            "cp": 1,
+            "subp": 1,
+            "cs": false,
+            "maxbr": 999000,
+            "fl": 320000,
+            "toast": false,
+            "flag": 128,
+            "preSell": false,
+            "playMaxbr": 999000,
+            "downloadMaxbr": 999000,
+            "chargeInfoList": [
+                {
+                    "rate": 128000,
+                    "chargeUrl": null,
+                    "chargeMessage": null,
+                    "chargeType": 0
+                },
+                {
+                    "rate": 192000,
+                    "chargeUrl": null,
+                    "chargeMessage": null,
+                    "chargeType": 0
+                },
+                {
+                    "rate": 320000,
+                    "chargeUrl": null,
+                    "chargeMessage": null,
+                    "chargeType": 0
+                },
+                {
+                    "rate": 999000,
+                    "chargeUrl": null,
+                    "chargeMessage": null,
+                    "chargeType": 1
+                }
+            ]
+        },
+        {
+            "id": 30251525,
+            "fee": 8,
+            "payed": 0,
+            "st": 0,
+            "pl": 128000,
+            "dl": 0,
+            "sp": 7,
+            "cp": 1,
+            "subp": 1,
+            "cs": false,
+            "maxbr": 999000,
+            "fl": 128000,
+            "toast": false,
+            "flag": 256,
+            "preSell": false,
+            "playMaxbr": 999000,
+            "downloadMaxbr": 999000,
+            "chargeInfoList": [
+                {
+                    "rate": 128000,
+                    "chargeUrl": null,
+                    "chargeMessage": null,
+                    "chargeType": 0
+                },
+                {
+                    "rate": 192000,
+                    "chargeUrl": null,
+                    "chargeMessage": null,
+                    "chargeType": 1
+                },
+                {
+                    "rate": 320000,
+                    "chargeUrl": null,
+                    "chargeMessage": null,
+                    "chargeType": 1
+                },
+                {
+                    "rate": 999000,
+                    "chargeUrl": null,
+                    "chargeMessage": null,
+                    "chargeType": 1
+                }
+            ]
+        },
+        {
+            "id": 28018274,
+            "fee": 0,
+            "payed": 0,
+            "st": 0,
+            "pl": 320000,
+            "dl": 999000,
+            "sp": 7,
+            "cp": 1,
+            "subp": 1,
+            "cs": false,
+            "maxbr": 999000,
+            "fl": 320000,
+            "toast": false,
+            "flag": 128,
+            "preSell": false,
+            "playMaxbr": 999000,
+            "downloadMaxbr": 999000,
+            "chargeInfoList": [
+                {
+                    "rate": 128000,
+                    "chargeUrl": null,
+                    "chargeMessage": null,
+                    "chargeType": 0
+                },
+                {
+                    "rate": 192000,
+                    "chargeUrl": null,
+                    "chargeMessage": null,
+                    "chargeType": 0
+                },
+                {
+                    "rate": 320000,
+                    "chargeUrl": null,
+                    "chargeMessage": null,
+                    "chargeType": 0
+                },
+                {
+                    "rate": 999000,
+                    "chargeUrl": null,
+                    "chargeMessage": null,
+                    "chargeType": 1
+                }
+            ]
+        }
+    ],
+    "code": 200
+}

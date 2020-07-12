@@ -1,90 +1,107 @@
 {
     "songs": [
         {
-            "name": "ワンルームシュガーライフ (TV size ver.)",
-            "id": 1293905025,
+            "name": "回レ! 雪月花",
+            "id": 28018274,
             "pst": 0,
             "t": 0,
             "ar": [
                 {
-                    "id": 28083218,
-                    "name": "ナナヲアカリ",
+                    "id": 16486,
+                    "name": "原田ひとみ",
+                    "tns": [],
+                    "alias": []
+                },
+                {
+                    "id": 16906,
+                    "name": "茅野愛衣",
+                    "tns": [],
+                    "alias": []
+                },
+                {
+                    "id": 17554,
+                    "name": "小倉唯",
                     "tns": [],
                     "alias": []
                 }
             ],
             "alia": [
-                "TV动画《Happy Sugar Life》片头曲 / TVアニメ「ハッピーシュガーライフ」OPテーマ"
+                "TV动画《機巧少女は傷つかない》片尾曲 ；TVアニメ「機巧少女は傷つかない」EDテーマ"
             ],
-            "pop": 80,
+            "pop": 100,
             "st": 0,
-            "rt": null,
+            "rt": "",
             "fee": 0,
-            "v": 24,
+            "v": 20,
             "crbt": null,
             "cf": "",
             "al": {
-                "id": 71851620,
-                "name": "ワンルームシュガーライフ (期間生産限定盤)",
-                "picUrl": "https://p1.music.126.net/Mikldm7Z_MJd0pUKvZrE7w==/109951163479130633.jpg",
+                "id": 2713036,
+                "name": "回レ! 雪月花",
+                "picUrl": "https://p2.music.126.net/UrbsnGXM8_cc3nLd3Ru3zw==/18541064580889962.jpg",
                 "tns": [],
-                "pic_str": "109951163479130633",
-                "pic": 109951163479130640
+                "pic_str": "18541064580889962",
+                "pic": 18541064580889960
             },
-            "dt": 89051,
-            "h": null,
+            "dt": 234680,
+            "h": {
+                "br": 320000,
+                "fid": 0,
+                "size": 9389496,
+                "vd": -42199
+            },
             "m": {
                 "br": 192000,
                 "fid": 0,
-                "size": 2137905,
-                "vd": -83432
+                "size": 5633714,
+                "vd": -39900
             },
             "l": {
                 "br": 128000,
                 "fid": 0,
-                "size": 1425284,
-                "vd": -81541
+                "size": 3755824,
+                "vd": -38700
             },
             "a": null,
-            "cd": "01",
-            "no": 4,
+            "cd": "1",
+            "no": 1,
             "rtUrl": null,
             "ftype": 0,
             "rtUrls": [],
             "djId": 0,
             "copyright": 2,
             "s_id": 0,
-            "mark": 262144,
+            "mark": 9007199255003136,
             "originCoverType": 0,
             "single": 0,
             "noCopyrightRcmd": null,
-            "mst": 9,
-            "cp": 663018,
             "mv": 0,
             "rtype": 0,
             "rurl": null,
-            "publishTime": 1534867200007
+            "mst": 9,
+            "cp": 663018,
+            "publishTime": 1385481600007
         }
     ],
     "privileges": [
         {
-            "id": 1293905025,
+            "id": 28018274,
             "fee": 0,
             "payed": 0,
             "st": 0,
-            "pl": 192000,
-            "dl": 192000,
+            "pl": 320000,
+            "dl": 999000,
             "sp": 7,
             "cp": 1,
             "subp": 1,
             "cs": false,
-            "maxbr": 192000,
-            "fl": 192000,
+            "maxbr": 999000,
+            "fl": 320000,
             "toast": false,
             "flag": 0,
             "preSell": false,
-            "playMaxbr": 192000,
-            "downloadMaxbr": 192000,
+            "playMaxbr": 999000,
+            "downloadMaxbr": 999000,
             "chargeInfoList": [
                 {
                     "rate": 128000,
