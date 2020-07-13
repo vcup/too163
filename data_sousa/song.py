@@ -1,5 +1,7 @@
+import decimal
+
 from data_sousa import key_path
-from typing import Union, Generator, Any, Dict, List
+from typing import Generator, Any, Dict, List
 
 
 class Song:
@@ -9,7 +11,7 @@ class Song:
         try:
             data[0]['songs'] = new_songs
         except IndexError:
-            raise TypeError(f'至少需要一个参数，传入了{len(data)}个')
+            raise TypeError(f'至少需要一个参数，传入了零个')
         self.path = key_path(data[0], point='songs')
         self.len = len(self.path)
 
@@ -31,11 +33,7 @@ class Song:
 
     def all_artist_iter(self) -> Generator[List[Dict], Any, None]:
         """迭代所有请求歌曲的所有歌手信息"""
-        for i in range(self.len):
-            ars = []
-            for a in self.artist_iter(i):
-                ars.append(a)
-            yield ars
+        return ([*self.artist_iter(i)] for i in range(self.len))
 
     def alia(self, i1: int = 0, i2: int = 0) -> str:
         """指定索引位置的歌曲的单个别名"""
@@ -45,13 +43,9 @@ class Song:
         """迭代指定索引位置的歌曲的所有别名"""
         return (self.alia(i1, i2) for i2 in range(len(self.path / f'[{i1}]/alia')))
 
-    def all_alias_iter(self) -> Generator[str, Any, None]:
+    def all_alias_iter(self) -> Generator[list, Any, None]:
         """迭代所有请求歌曲的所有别名"""
-        for i in range(self.len):
-            ars = []
-            for a in self.alias_iter(i):
-                ars.append(a)
-            yield ars
+        return ([*self.alias_iter(i)] for i in range(self.len))
 
     def name(self, i: int = 0) -> str:
         """指定索引位置的歌曲的名字"""
@@ -77,10 +71,26 @@ class Song:
         """迭代所有请求歌曲的MV的ID"""
         return (self.mv(i) for i in range(self.len))
 
-    def album_no(self, i) -> int:
+    def album_no(self, i: int = 0) -> int:
         """返回指定位置单曲在所属专辑中的序号"""
-        return self.path / f'{i}/no'
+        return self.path / f'[{i}]/no'
 
     def album_no_iter(self) -> Generator[int, Any, None]:
         """迭代请求歌曲在所属专辑中的序号"""
         return (self.album_no(i) for i in range(self.len))
+
+    def pop(self, i: int = 0) -> int:
+        """返回指定位置单曲的人气"""
+        return self.path / f'[{i}]/pop'
+
+    def pop_iter(self) -> Generator[int, Any, None]:
+        """迭代请求所有歌曲的人气"""
+        return (self.pop(i) for i in range(self.len))
+
+    def duration(self, i: int = 0) -> int:
+        """返回指定单曲的持续时间"""
+        return self.path / f'[{i}]/dt'
+
+    def duration_iter(self) -> Generator[int, Any, None]:
+        """迭代请求歌曲的所有持续时间"""
+        return (self.duration(i) for i in range(self.len))

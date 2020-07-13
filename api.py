@@ -1,5 +1,3 @@
-import time
-
 import urllib3
 import json
 
@@ -38,17 +36,17 @@ class SearchType:
     Comprehensive = 1018
 
 
-url = 'https://127.0.0.1:3000'
+api_url = 'https://127.0.0.1:3000'
 
 
 def search(kw: str, res_type: int, limit: int, page: int = 0):
-    res = RequestUrl(f'{url}/search')
+    res = RequestUrl(f'{api_url}/search')
     return res.post(keywords=kw, type=res_type, limit=limit, offset=page)
 
 
 def lyric(sid: int, lrc: bool = True, tlrc: bool = True):
     parm = {'id': sid}
-    res = RequestUrl(f'{url}/lyric')
+    res = RequestUrl(f'{api_url}/lyric')
     if lrc:
         parm.setdefault('lv', -1)
     if tlrc:
@@ -57,48 +55,48 @@ def lyric(sid: int, lrc: bool = True, tlrc: bool = True):
 
 
 def song(*sid: int):
-    res = RequestUrl(f'{url}/song/detail')
+    res = RequestUrl(f'{api_url}/song/detail')
     return res.post(ids=str(sid)[1:-1])
 
 
 def playlist(pid: int):
-    res = RequestUrl(f'{url}/playlist/detail')
+    res = RequestUrl(f'{api_url}/playlist/detail')
     return res.post(id=pid)
 
 
 def user(uid: int):
-    res = RequestUrl(f'{url}/user/detail')
+    res = RequestUrl(f'{api_url}/user/detail')
     return res.post(id=uid)
 
 
 def user_playlist(uid: int, limit: int = 999999):
-    res = RequestUrl(f'{url}/user/playlist')
+    res = RequestUrl(f'{api_url}/user/playlist')
     return res.post(uid=uid, limit=limit)
 
 
 def album(album_id):
-    res = RequestUrl(f'{url}/album')
+    res = RequestUrl(f'{api_url}/album')
     return res.post(id=album_id)
 
 
 def artist(aid):
-    res = RequestUrl(f'{url}/artists')
+    res = RequestUrl(f'{api_url}/artists')
     return res.post(id=aid)
 
 
 def artist_album(artist_id: int, limit: int = 2147483647):
-    res = RequestUrl(f'{url}/artist/album')
+    res = RequestUrl(f'{api_url}/artist/album')
     return res.post(id=artist_id, limit=limit)
 
 
 def mv_url(mv_id: int):
-    res = RequestUrl(f'{url}/mv/url')
+    res = RequestUrl(f'{api_url}/mv/url')
     return res.post(id=mv_id)
 
 
 def player_song(*ids: int, br: int = 2147483647):
     """提供多首歌的在线试听地址，无法获取无损但可以获取VIP歌曲地址"""
-    res = RequestUrl(f'{url}/song/url')
+    res = RequestUrl(f'{api_url}/song/url')
     return res.post(ids=str(ids)[1:-1], br=br)
 
 

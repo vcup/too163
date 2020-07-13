@@ -18,11 +18,11 @@ class key_path:
     @property
     def meke_point(self) -> str:
         """self.back默认为0，str[:-0]会返回空字符串"""
-        back_lever, self.back = self.back, 0 # 重置self.back
+        back_lever, self.back = self.back, 0  # 重置self.back
         point = self.split_path(self.point)
         if self.back != 0:
-            return self.sep.join(point[:back_lever]) # 忽略指定级路径，同时用self.sep重新分隔成path
-        return self.sep.join(point) # 如果back为0，则不修改point
+            return self.sep.join(point[:back_lever])  # 忽略指定级路径，同时用self.sep重新分隔成path
+        return self.sep.join(point)  # 如果back为0，则不修改point
 
     def Characters_inside_the_symbol(self, k: str) -> str or int:
         """尝试使用数字作为索引"""
@@ -51,7 +51,7 @@ class key_path:
         """用设置的分隔符切割传入的path，如果path空则切割self.path"""
         path = path if path else self.path
         if path:
-            if path[-1] == self.sep: # 删除多出来的空字符串 '/k1/k2//'.split('/') -> ['', 'k1', 'k2', '', '']
+            if path[-1] == self.sep:  # 删除多出来的空字符串 '/k1/k2//'.split('/') -> ['', 'k1', 'k2', '', '']
                 return path.split(self.sep)[:-1]
             return path.split(self.sep)
         else:
@@ -105,7 +105,7 @@ class key_path:
         return self.copy_set(data=data, sep=self.sep, point=self.point)
 
     def __len__(self):
-        return len(self.__truediv__('')) # 照顾到point非空的情况
+        return len(self.__truediv__(''))
 
 
 class index_path(key_path):
@@ -118,4 +118,3 @@ class index_path(key_path):
             return int(k)
         except ValueError:
             return k[1:-1]
-

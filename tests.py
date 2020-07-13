@@ -23,18 +23,18 @@ class TestSong(TestDataSousa):
     def setUp(self) -> None:
         self.assertEqual('Song', self.song.__class__.__name__)
 
-    def bs(self, p: str):
-        return (s + p for s in ['[0]/', '[1]/', '[2]/'])
+    def gp(self, p: str):
+        return (f'[{n}]/' + p for n in range(self.song.len))
 
     def test_init(self):
-        self.assertRaisesRegex(TypeError, '至少需要一个参数，传入了0个',  self.song.__init__)
+        self.assertRaisesRegex(TypeError, '至少需要一个参数，传入了零个',  self.song.__init__)
 
     def test_album(self):
         self.assertEqual(self.song_dict / '[0]/al/id', self.song.album().get('id'))
 
     def test_album_iter(self):
-        self.assertEqual(list(self.song_dict.return_values(*self.bs('al'))),
-                         list(self.song.album_iter()))
+        self.assertEqual([*self.song_dict.return_values(*self.gp('al'))],
+                         [*self.song.album_iter()])
 
     def test_artist(self):
         self.assertEqual(self.song_dict / '[0]/ar/[0]/', self.song.artist())
@@ -43,7 +43,7 @@ class TestSong(TestDataSousa):
         self.assertEqual(self.song_dict / '[0]/ar', list(self.song.artist_iter()))
 
     def test_all_artist_iter(self):
-        self.assertEqual([*self.song_dict.return_values(*self.bs('ar'))],
+        self.assertEqual([*self.song_dict.return_values(*self.gp('ar'))],
                          [*self.song.all_artist_iter()])
 
     def test_alia(self):
@@ -53,29 +53,43 @@ class TestSong(TestDataSousa):
         self.assertEqual(self.song_dict / '[0]/alia', list(self.song.alias_iter()))
     
     def test_all_alias_iter(self):
-        self.assertEqual([*self.song_dict.return_values(*self.bs('alia'))],
+        self.assertEqual([*self.song_dict.return_values(*self.gp('alia'))],
                          [*self.song.all_alias_iter()])
 
     def test_name(self):
         self.assertEqual(self.song_dict / '[0]/name', self.song.name())
 
     def test_name_iter(self):
-        self.assertEqual([*self.song_dict.return_values(*self.bs('name'))],
+        self.assertEqual([*self.song_dict.return_values(*self.gp('name'))],
                          [*self.song.name_iter()])
 
     def test_id(self):
         self.assertEqual(self.song_dict / '[0]/id', self.song.id())
 
     def test_id_iter(self):
-        self.assertEqual([*self.song_dict.return_values(*self.bs('id'))],
+        self.assertEqual([*self.song_dict.return_values(*self.gp('id'))],
                          [*self.song.id_iter()])
 
     def test_mv(self):
         self.assertEqual(self.song_dict / '[0]/mv', self.song.mv())
 
     def test_mv_iter(self):
-        self.assertEqual([*self.song_dict.return_values(*self.bs('mv'))],
+        self.assertEqual([*self.song_dict.return_values(*self.gp('mv'))],
                          [*self.song.mv_iter()])
+
+    def test_album_no(self):
+        self.assertEqual(self.song_dict / '[0]/no', self.song.album_no())
+
+    def test_album_no_iter(self):
+        self.assertEqual([*self.song_dict.return_values(*self.gp('no'))],
+                         [*self.song.album_no_iter()])
+
+    def test_duration(self):
+        self.assertEqual(self.song_dict / '[0]/dt', self.song.duration())
+
+    def test_duration_iter(self):
+        self.assertEqual([*self.song_dict.return_values(*self.gp('dt'))],
+                         [*self.song.duration_iter()])
 
 
 class TestAlbum(TestDataSousa):
