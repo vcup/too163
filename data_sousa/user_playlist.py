@@ -1,8 +1,4 @@
-from data_sousa import key_path
-from typing import Union, Generator, Any
-
-
-class user_playlist_old:
+class UserPlaylist:
     """解析来之 music.163.com/api/user/playlist 的数据"""
 
     def __init__(self, data: dict):
@@ -15,11 +11,3 @@ class user_playlist_old:
 
     def list_iter(self) -> Generator[dict, Any, None]:
         return (self.list(i) for i in range(self.len))
-
-
-class user_playlist_new(user_playlist_old):
-    pass
-
-
-def user_playlist(data: dict) -> Union[user_playlist_old, user_playlist_new]:
-    return user_playlist_old(data)

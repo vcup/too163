@@ -51,7 +51,7 @@ def g_lyric():
     cursor.execute(r"SELECT id, name FROM user_all_song_list_id WHERE type='song'")
     for sid, name in cursor.fetchall():
         lrc_data = api.lyric(sid)
-        lrc_obj = data_sousa.lyric(lrc_data)
+        lrc_obj = data_sousa.Lyric(lrc_data)
         lrc_str = lrc_obj.lrc_plus()
         if lrc_str:
             fn = check.format_fn(name)

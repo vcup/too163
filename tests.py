@@ -4,7 +4,7 @@ from json import loads
 from unittest import TestCase, main
 
 import test_item
-from data_sousa import Song, album, key_path
+from data_sousa import Song, Album, key_path
 
 
 class TestDataSousa(TestCase):
@@ -97,7 +97,7 @@ class TestAlbum(TestDataSousa):
     @classmethod
     def setUpClass(cls) -> None:
         cls.album_dict = key_path(test_item.album_3308499)
-        cls.album = album(cls.album_dict.data)
+        cls.album = Album(cls.album_dict.data)
 
     def setUp(self) -> None:
         self.assertEqual('AlbumNew', self.album.__class__.__name__)

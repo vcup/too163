@@ -1,27 +1,8 @@
-import datetime
-import json
-import time
-
-from data_sousa import key_path
-from data_sousa import Song
-from typing import Union, Generator, Any, NewType
-
-Url = NewType('Url', str)
-
-
-class AlbumOld:
+class Album:
 
     def __init__(self, data: dict):
         self.path = key_path(data, point='album')
         self.len = len(self.path)
-
-    def songs(self, i: int = 0) -> dict:
-        """返回专辑的指定曲目"""
-        return self.path / f'songs/[{i}]'
-
-    def song_iter(self) -> Generator[dict, Any, None]:
-        """迭代专辑包涵的所有曲目"""
-        return (self.songs(i) for i in range((self.path / 'size')))
 
     def artist(self) -> dict:
         """单个歌手信息，与self.artists不同"""
@@ -43,7 +24,7 @@ class AlbumOld:
         """专辑名"""
         return self.path / 'name'
 
-    def pic_url(self) -> Url:
+    def pic_url(self) -> str:
         """专辑的封面"""
         return self.path / 'picUrl'
 
@@ -88,19 +69,10 @@ class AlbumOld:
         """子类型"""
         return self.path / 'subType'
 
-
-class AlbumNew(AlbumOld):
-
-    def songs(self, i: int = 0) -> dict:
+    def songs(self, i: int = 0) -> Song:
         """返回专辑指定位置单曲"""
-        return self.path.copy_set_point('') / f'songs/[{i}]'
+        return Song(self.path.copy_set_point('') / f'songs/[{i}]')
 
     def song_iter(self) -> Generator[Song, Any, None]:
         """返回专辑所有单曲"""
         return (self.songs(i) for i in range((self.path / 'size')))
-
-
-def album(data: dict) -> Union[AlbumOld, AlbumNew]:
-    if 'songs' in data.keys():
-        return AlbumNew(data)
-    return AlbumOld(data)

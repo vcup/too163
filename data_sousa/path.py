@@ -24,7 +24,7 @@ class key_path:
             return self.sep.join(point[:back_lever])  # 忽略指定级路径，同时用self.sep重新分隔成path
         return self.sep.join(point)  # 如果back为0，则不修改point
 
-    def Characters_inside_the_symbol(self, k: str) -> str or int:
+    def characters_inside_the_symbol(self, k: str) -> str or int:
         """尝试使用数字作为索引"""
         try:
             return int(k[1:-1])
@@ -45,7 +45,7 @@ class key_path:
                 raise error_type(
                     f'{error}    \n    key: {key}, keys: {data.keys() if isinstance(data, dict) else data}'
                 )
-        return data
+        return key_path(data)
 
     def split_path(self, path: str = None):
         """用设置的分隔符切割传入的path，如果path空则切割self.path"""
@@ -60,7 +60,7 @@ class key_path:
     def __truediv__(self, path: str):
         """用真除魔法除以路径返回对应值; 设置了point会在point后接续路径"""
         self.path = f'{self.meke_point}{self.sep}{path}' if self.point else path
-        paths = map(self.Characters_inside_the_symbol, self.split_path())
+        paths = map(self.characters_inside_the_symbol, self.split_path())
         return self.get_value(paths)
 
     def return_values(self, *paths: str):
@@ -112,7 +112,7 @@ class index_path(key_path):
     """如果希望使用字符串作为索引的话，用任意的两个字符包在数字周围;
         直接使用空字符串作为路径，则返回data(除非设置了point)"""
 
-    def Characters_inside_the_symbol(self, k: str) -> int or str:
+    def characters_inside_the_symbol(self, k: str) -> int or str:
         """尝试使用字符串作为索引"""
         try:
             return int(k)

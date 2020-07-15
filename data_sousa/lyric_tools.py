@@ -1,5 +1,4 @@
 import re
-import data_sousa
 from typing import AnyStr
 
 

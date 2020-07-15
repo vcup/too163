@@ -1,9 +1,3 @@
-import decimal
-
-from data_sousa import key_path
-from typing import Generator, Any, Dict, List
-
-
 class Song:
 
     def __init__(self, *data: dict):
@@ -15,23 +9,23 @@ class Song:
         self.path = key_path(data[0], point='songs')
         self.len = len(self.path)
 
-    def album(self, i: int = 0) -> dict:
+    def album(self, i: int = 0) -> Album:
         """指定索引位置的歌曲的专辑信息"""
-        return self.path / f'[{i}]/al'
+        return Album(self.path / f'[{i}]/al')
 
-    def album_iter(self) -> Generator[dict, Any, None]:
+    def album_iter(self) -> Generator[Album, Any, None]:
         """迭代所有请求歌曲的专辑信息"""
         return (self.album(i) for i in range(self.len))
 
-    def artist(self, i1: int = 0, i2: int = 0) -> dict:
+    def artist(self, i1: int = 0, i2: int = 0) -> Artist:
         """指定索引位置的歌曲的单个歌手信息"""
-        return self.path / f'[{i1}]/ar/[{i2}]'
+        return Artist(self.path / f'[{i1}]/ar/[{i2}]')
 
-    def artist_iter(self, i1: int = 0) -> Generator[dict, Any, None]:
+    def artist_iter(self, i1: int = 0) -> Generator[Artist, Any, None]:
         """迭代指定索引位置的歌曲的所有歌手信息"""
         return (self.artist(i1, i2) for i2 in range(len(self.path / f'[{i1}]/ar')))
 
-    def all_artist_iter(self) -> Generator[List[Dict], Any, None]:
+    def all_artist_iter(self) -> Generator[List[Artist], Any, None]:
         """迭代所有请求歌曲的所有歌手信息"""
         return ([*self.artist_iter(i)] for i in range(self.len))
 
