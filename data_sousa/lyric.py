@@ -1,4 +1,10 @@
+from data_sousa import lyric_tools, KeyPath
+
+
 class Lyric:
+
+    def __init__(self, data: dict):
+        self.path = KeyPath(data)
 
     def lrc(self) -> str:
         lrc_str = self.path.get('lrc/lyric')

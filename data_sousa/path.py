@@ -1,7 +1,9 @@
 import copy
+from json import dumps
+from typing import Generator, Union, Any
 
 
-class key_path:
+class KeyPath:
     """如果希望使用数字作为索引的话，用任意的两个字符包在数字周围;
     直接使用空字符串作为路径，则返回self.data(除非设置了point)"""
 
@@ -24,28 +26,30 @@ class key_path:
             return self.sep.join(point[:back_lever])  # 忽略指定级路径，同时用self.sep重新分隔成path
         return self.sep.join(point)  # 如果back为0，则不修改point
 
-    def characters_inside_the_symbol(self, k: str) -> str or int:
+    def characters_inside_the_symbol(self, k: str) -> Union[str, int]:
         """尝试使用数字作为索引"""
         try:
             return int(k[1:-1])
         except ValueError:
             return k
 
-    def get_value(self, paths: iter):
+    def get_value(self, paths: iter) -> 'KeyPath':
         """使用分隔后的路径迭代出路径指向的值"""
         data = self.data
         for key in paths:
             try:
                 data = data[key]
-            except (TypeError, KeyError) as error:
+            except (TypeError, KeyError, IndexError) as error:
                 if isinstance(error, TypeError):
                     error_type = TypeError
-                else:
+                elif isinstance(error, KeyError):
                     error_type = KeyError
+                else:
+                    error_type = IndexError
                 raise error_type(
-                    f'{error}    \n    key: {key}, keys: {data.keys() if isinstance(data, dict) else data}'
+                    f'{error}    \n    key: {key}, data: {data.keys() if isinstance(data, dict) else data}'
                 )
-        return key_path(data)
+        return self.copy(data)
 
     def split_path(self, path: str = None):
         """用设置的分隔符切割传入的path，如果path空则切割self.path"""
@@ -57,15 +61,18 @@ class key_path:
         else:
             return ''
 
-    def __truediv__(self, path: str):
+    def __truediv__(self, path: str) -> 'KeyPath':
         """用真除魔法除以路径返回对应值; 设置了point会在point后接续路径"""
         self.path = f'{self.meke_point}{self.sep}{path}' if self.point else path
-        paths = map(self.characters_inside_the_symbol, self.split_path())
+        # paths = map(self.characters_inside_the_symbol, self.split_path())
+        paths = [self.characters_inside_the_symbol(k) for k in self.split_path()]
         return self.get_value(paths)
 
-    def return_values(self, *paths: str):
+    def return_values(self, *paths: str, **kwargs: str) -> Generator['KeyPath', Any, None]:
         """返回多个路径对应的值"""
-        return (self.__truediv__(path) for path in paths)
+        for path in paths:
+            res = self.__truediv__(path)
+            yield getattr(res, kwargs.get('attr'), res)
 
     def get(self, path):
         """模仿dict.get方法"""
@@ -88,7 +95,7 @@ class key_path:
     def set_data(self, data):
         self.set(data=data, sep=self.sep, point=self.point)
 
-    def copy_set(self, *args, **kwargs):
+    def copy(self, *args, **kwargs):
         """不修改实例属性的情况下返回另一个修改特定属性的实例;
         引用此方法的同理"""
         self_ = copy.copy(self)
@@ -96,19 +103,22 @@ class key_path:
         return self_
 
     def copy_set_point(self, point):
-        return self.copy_set(data=self.data, point=point, sep=self.sep)
+        return self.copy(data=self.data, point=point, sep=self.sep)
 
     def copy_set_sep(self, sep: str):
-        return self.copy_set(data=self.data, sep=sep, point=self.point)
+        return self.copy(data=self.data, sep=sep, point=self.point)
 
     def copy_set_data(self, data):
-        return self.copy_set(data=data, sep=self.sep, point=self.point)
+        return self.copy(data=data, sep=self.sep, point=self.point)
 
     def __len__(self):
-        return len(self.__truediv__(''))
+        return len(self.__truediv__('').data)
+
+    def __str__(self):
+        return dumps(self.data)
 
 
-class index_path(key_path):
+class IndexPath(KeyPath):
     """如果希望使用字符串作为索引的话，用任意的两个字符包在数字周围;
         直接使用空字符串作为路径，则返回data(除非设置了point)"""
 
