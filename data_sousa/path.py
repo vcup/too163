@@ -33,13 +33,13 @@ class KeyPath:
         except ValueError:
             return k
 
-    def get_value(self, paths: iter) -> 'KeyPath':
+    def path_to_value(self, path: iter) -> 'KeyPath':
         """使用分隔后的路径迭代出路径指向的值"""
         data = self.data
-        for key in paths:
+        for key in path:
             try:
                 data = data[key]
-            except (TypeError, KeyError, IndexError) as error:
+            except Exception as error:
                 if isinstance(error, TypeError):
                     error_type = TypeError
                 elif isinstance(error, KeyError):
@@ -52,8 +52,6 @@ class KeyPath:
         return self.copy(data)
 
     def split_path(self, path: str = None):
-        """用设置的分隔符切割传入的path，如果path空则切割self.path"""
-        path = path if path else self.path
         if path:
             if path[-1] == self.sep:  # 删除多出来的空字符串 '/k1/k2//'.split('/') -> ['', 'k1', 'k2', '', '']
                 return path.split(self.sep)[:-1]
@@ -61,28 +59,23 @@ class KeyPath:
         else:
             return ''
 
-    def __truediv__(self, path: str) -> 'KeyPath':
-        """用真除魔法除以路径返回对应值; 设置了point会在point后接续路径"""
-        self.path = f'{self.meke_point}{self.sep}{path}' if self.point else path
-        # paths = map(self.characters_inside_the_symbol, self.split_path())
-        paths = [self.characters_inside_the_symbol(k) for k in self.split_path()]
-        return self.get_value(paths)
+    def v(self, path: str, attr: str = '') -> Union['KeyPath', Any]:
+        path = f'{self.meke_point}{self.sep}{path}' if self.point else path
+        path = map(self.characters_inside_the_symbol, self.split_path(path))
+        res = self.path_to_value(path)
+        return getattr(res, attr, None if attr else res)
 
-    def return_values(self, *paths: str, **kwargs: str) -> Generator['KeyPath', Any, None]:
-        """返回多个路径对应的值"""
-        for path in paths:
-            res = self.__truediv__(path)
-            yield getattr(res, kwargs.get('attr'), res)
+    def vs(self, *paths: str, **kwargs) -> Generator['KeyPath', Any, None]:
+        return (self.v(path, **kwargs) for path in paths)
 
-    def get(self, path):
-        """模仿dict.get方法"""
+    def get(self, path, **kwargs):
         try:
-            return self.__truediv__(path)
+            return self.v(path, **kwargs)
         except (KeyError, IndexError):
             return None
 
-    def get_iter(self, paths) -> iter:
-        return (self.get(path) for path in paths)
+    def get_iter(self, paths, **kwargs) -> iter:
+        return (self.get(path, **kwargs) for path in paths)
 
     set = __init__
 
@@ -95,27 +88,30 @@ class KeyPath:
     def set_data(self, data):
         self.set(data=data, sep=self.sep, point=self.point)
 
-    def copy(self, *args, **kwargs):
+    def copy(self, *args, **kwargs) -> 'KeyPath':
         """不修改实例属性的情况下返回另一个修改特定属性的实例;
         引用此方法的同理"""
         self_ = copy.copy(self)
         self_.set(*args, **kwargs)
         return self_
 
-    def copy_set_point(self, point):
+    def copy_set_point(self, point) -> 'KeyPath':
         return self.copy(data=self.data, point=point, sep=self.sep)
 
-    def copy_set_sep(self, sep: str):
+    def copy_set_sep(self, sep: str) -> 'KeyPath':
         return self.copy(data=self.data, sep=sep, point=self.point)
 
-    def copy_set_data(self, data):
+    def copy_set_data(self, data) -> 'KeyPath':
         return self.copy(data=data, sep=self.sep, point=self.point)
 
     def __len__(self):
-        return len(self.__truediv__('').data)
+        return len(self.v('', attr='data'))
 
     def __str__(self):
         return dumps(self.data)
+
+    def __int__(self):
+        return int(self.data)
 
 
 class IndexPath(KeyPath):

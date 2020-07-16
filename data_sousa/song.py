@@ -16,7 +16,7 @@ class Song:
 
     def album(self, i: int = 0) -> KeyPath:
         """指定索引位置的歌曲的专辑信息"""
-        return self.path / f'[{i}]/al'
+        return self.path.v(f'[{i}]/al')
 
     def album_iter(self) -> Generator[KeyPath, Any, None]:
         """迭代所有请求歌曲的专辑信息"""
@@ -24,11 +24,11 @@ class Song:
 
     def artist(self, i1: int = 0, i2: int = 0) -> KeyPath:
         """指定索引位置的歌曲的单个歌手信息"""
-        return self.path / f'[{i1}]/ar/[{i2}]'
+        return self.path.v(f'[{i1}]/ar/[{i2}]')
 
     def artist_iter(self, i1: int = 0) -> Generator[KeyPath, Any, None]:
         """迭代指定索引位置的歌曲的所有歌手信息"""
-        return (self.artist(i1, i2) for i2 in range(len(self.path / f'[{i1}]/ar')))
+        return (self.artist(i1, i2) for i2 in range(len(self.path.v(f'[{i1}]/ar'))))
 
     def all_artist_iter(self) -> Generator[List[KeyPath], Any, None]:
         """迭代所有请求歌曲的所有歌手信息"""
@@ -36,11 +36,11 @@ class Song:
 
     def alia(self, i1: int = 0, i2: int = 0) -> KeyPath:
         """指定索引位置的歌曲的单个别名"""
-        return self.path / f'[{i1}]/alia/[{i2}]'
+        return self.path.v(f'[{i1}]/alia/[{i2}]')
 
     def alias_iter(self, i1: int = 0) -> Generator[KeyPath, Any, None]:
         """迭代指定索引位置的歌曲的所有别名"""
-        return (self.alia(i1, i2) for i2 in range(len(self.path / f'[{i1}]/alia')))
+        return (self.alia(i1, i2) for i2 in range(len(self.path.v(f'[{i1}]/alia'))))
 
     def all_alias_iter(self) -> Generator[List[KeyPath], Any, None]:
         """迭代所有请求歌曲的所有别名"""
@@ -48,7 +48,7 @@ class Song:
 
     def name(self, i: int = 0) -> KeyPath:
         """指定索引位置的歌曲的名字"""
-        return self.path / f'[{i}]/name'
+        return self.path.v(f'[{i}]/name')
 
     def name_iter(self) -> Generator[KeyPath, Any, None]:
         """迭代所有请求歌曲的名字"""
@@ -56,7 +56,7 @@ class Song:
 
     def id(self, i: int = 0) -> KeyPath:
         """指定索引位置的歌曲的ID"""
-        return self.path / f'[{i}]/id'
+        return self.path.v(f'[{i}]/id')
 
     def id_iter(self) -> Generator[KeyPath, Any, None]:
         """迭代所有请求歌曲的ID"""
@@ -64,7 +64,7 @@ class Song:
 
     def mv(self, i: int = 0) -> KeyPath:
         """指定索引位置的歌曲的MV的ID"""
-        return self.path / f'[{i}]/mv'
+        return self.path.v(f'[{i}]/mv')
 
     def mv_iter(self) -> Generator[KeyPath, Any, None]:
         """迭代所有请求歌曲的MV的ID"""
@@ -72,7 +72,7 @@ class Song:
 
     def album_no(self, i: int = 0) -> KeyPath:
         """返回指定位置单曲在所属专辑中的序号"""
-        return self.path / f'[{i}]/no'
+        return self.path.v(f'[{i}]/no')
 
     def album_no_iter(self) -> Generator[KeyPath, Any, None]:
         """迭代请求歌曲在所属专辑中的序号"""
@@ -80,7 +80,7 @@ class Song:
 
     def pop(self, i: int = 0) -> KeyPath:
         """返回指定位置单曲的人气"""
-        return self.path / f'[{i}]/pop'
+        return self.path.v(f'[{i}]/pop')
 
     def pop_iter(self) -> Generator[KeyPath, Any, None]:
         """迭代请求所有歌曲的人气"""
@@ -88,7 +88,7 @@ class Song:
 
     def duration(self, i: int = 0) -> KeyPath:
         """返回指定单曲的持续时间"""
-        return self.path / f'[{i}]/dt'
+        return self.path.v(f'[{i}]/dt')
 
     def duration_iter(self) -> Generator[KeyPath, Any, None]:
         """迭代请求歌曲的所有持续时间"""

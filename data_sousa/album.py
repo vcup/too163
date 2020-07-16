@@ -14,11 +14,11 @@ class Album:
 
     def artist(self) -> KeyPath:
         """单个歌手信息，与self.artists不同"""
-        return self.path / 'artist'
+        return self.path.v('artist')
 
     def artists(self, i: int = 0) -> KeyPath:
         """指定索引位置的歌手信息"""
-        return self.path / f'artists/[{i}]'
+        return self.path.v(f'artists/[{i}]')
 
     def artists_iter(self) -> Generator[KeyPath, Any, None]:
         """迭代专辑的所有歌手信息"""
@@ -26,27 +26,27 @@ class Album:
 
     def id(self) -> KeyPath:
         """专辑ID"""
-        return self.path / 'id'
+        return self.path.v('id')
 
     def name(self) -> KeyPath:
         """专辑名"""
-        return self.path / 'name'
+        return self.path.v('name')
 
     def pic_url(self) -> KeyPath:
         """专辑的封面"""
-        return self.path / 'picUrl'
+        return self.path.v('picUrl')
 
     def size(self) -> KeyPath:
         """专辑包涵的曲目数"""
-        return self.path / 'size'
+        return self.path.v('size')
 
     def info(self) -> KeyPath:
         """奇怪信息"""
-        return self.path / 'info'
+        return self.path.v('info')
 
     def pub_time(self) -> KeyPath:
         """发布时间的时间戳"""
-        return self.path / 'publishTime'
+        return self.path.v('publishTime')
 
     def pub_date(self, time_zone_info=None) -> datetime.datetime:
         """发布时间，返回datetime实例"""
@@ -59,27 +59,27 @@ class Album:
 
     def company(self) -> KeyPath:
         """发行商"""
-        return self.path / 'company'
+        return self.path.v('company')
 
     def desc(self) -> KeyPath:
         """简介"""
-        return self.path / 'briefDesc'
+        return self.path.v('briefDesc')
 
     def tag(self) -> KeyPath:
         """标签"""
-        return self.path / 'tags'
+        return self.path.v('tags')
 
     def type(self) -> KeyPath:
         """专辑类型"""
-        return self.path / 'type'
+        return self.path.v('type')
 
     def subtype(self) -> KeyPath:
         """子类型"""
-        return self.path / 'subType'
+        return self.path.v('subType')
 
     def song(self, i: int = 0) -> KeyPath:
         """返回专辑指定位置单曲"""
-        return self.path.copy_set_point('') / f'songs/[{i}]'
+        return self.path.copy_set_point('').v(f'songs/[{i}]')
 
     def song_iter(self) -> Generator['KeyPath', Any, None]:
         """返回专辑所有单曲"""
