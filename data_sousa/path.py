@@ -1,81 +1,76 @@
 import copy
-from json import dumps
-from typing import Generator, Union, Any
+from typing import Any, Dict, Generator, Iterator, List, Union
 
 
 class KeyPath:
-    """如果希望使用数字作为索引的话，用任意的两个字符包在数字周围;
-    直接使用空字符串作为路径，则返回self.data(除非设置了point)"""
+    """初始化时传入list或dict作为必选参数，然后调用对应方法获取其中的值
+    sep是分隔路径用的符号，默认时'/'
+    point是路径的基准点，设置之后调用方法获取值会在路径前面加上
+    up_path_bol是上一层路径的标识符，默认为'..'，遇到该符号则在该符号前面一个路径重新开始
+    attr是最后获取的数据的期望属性，调用方法时传入会被覆盖"""
 
-    def __init__(self, data, sep: str = '/', point: str = '', back: int = 0):
-        self.back = back
-        self.point = point
-        self.sep = sep
+    def __init__(self, data: Union[List, Dict],
+                 sep: str = '/', point: str = '', up_path_bol: str = '..', attr: str = ''):
         self.data = data
+        self.sep = sep
+        self.point = point
+        self.up = up_path_bol
+        self.attr = attr
 
-    def set_back(self, back_value: int):
-        """设置的back_value可以忽略指定级数的point(从末尾开始)"""
-        self.back = back_value
+    def copy(self, data: Union[List, Dict], **kwargs) -> 'KeyPath':
+        self_copy = copy.copy(self)
+        self_copy.__init__(data, **kwargs)
+        return self_copy
 
-    @property
-    def meke_point(self) -> str:
-        """self.back默认为0，str[:-0]会返回空字符串"""
-        back_lever, self.back = self.back, 0  # 重置self.back
-        point = self.split_path(self.point)
-        if self.back != 0:
-            return self.sep.join(point[:back_lever])  # 忽略指定级路径，同时用self.sep重新分隔成path
-        return self.sep.join(point)  # 如果back为0，则不修改point
-
-    def characters_inside_the_symbol(self, k: str) -> Union[str, int]:
-        """尝试使用数字作为索引"""
+    def split_path(self, path: str) -> Iterator[Union[int, str]]:
+        """对传入的path切割，并在前面加上point切割后的部分"""
+        key_list = self.point.split(self.sep) + path.split(self.sep)
         try:
-            return int(k[1:-1])
+            index = key_list.index(self.up)
+            del key_list[index-1:index+1]
         except ValueError:
-            return k
+            pass
+        return [self.try_num(key) for key in key_list]
 
-    def path_to_value(self, path: iter) -> 'KeyPath':
-        """使用分隔后的路径迭代出路径指向的值"""
+    def try_num(self, key: str) -> Union[int, str]:
+        """尝试将key变成int"""
+        try:
+            return int(key[1:-1])
+        except ValueError:
+            return key
+
+    def value(self, key_list: iter) -> 'KeyPath':
+        """获取路径对应的值"""
         data = self.data
-        for key in path:
+        for key in key_list:
             try:
                 data = data[key]
-            except Exception as error:
-                if isinstance(error, TypeError):
-                    error_type = TypeError
-                elif isinstance(error, KeyError):
-                    error_type = KeyError
-                else:
-                    error_type = IndexError
-                raise error_type(
-                    f'{error}    \n    key: {key}, data: {data.keys() if isinstance(data, dict) else data}'
-                )
+            except KeyError:
+                if key == '':
+                    continue
         return self.copy(data)
 
-    def split_path(self, path: str = None):
-        if path:
-            if path[-1] == self.sep:  # 删除多出来的空字符串 '/k1/k2//'.split('/') -> ['', 'k1', 'k2', '', '']
-                return path.split(self.sep)[:-1]
-            return path.split(self.sep)
-        else:
-            return ''
-
-    def v(self, path: str, attr: str = '') -> Union['KeyPath', Any]:
-        path = f'{self.meke_point}{self.sep}{path}' if self.point else path
-        path = map(self.characters_inside_the_symbol, self.split_path(path))
-        res = self.path_to_value(path)
+    def v(self, path: str, attr: str = '') -> 'KeyPath':
+        """返回point+path使用sep切割后，对应的data中的值
+        如果有value的key为数字，则用任意字符将数字括起来"""
+        attr = attr if attr else self.attr
+        res = self.value(self.split_path(path))
         return getattr(res, attr, None if attr else res)
 
-    def vs(self, *paths: str, **kwargs) -> Generator['KeyPath', Any, None]:
+    def vs(self, *paths: str, **kwargs) -> Generator['KeyPath', None, Any]:
+        """获取多个路径对应的值"""
         return (self.v(path, **kwargs) for path in paths)
 
-    def get(self, path, **kwargs):
+    def g(self, path: str, **kwargs) -> Union['KeyPath', None]:
+        """获取路径对应的值而不抛出错误"""
         try:
             return self.v(path, **kwargs)
         except (KeyError, IndexError):
             return None
 
-    def get_iter(self, paths, **kwargs) -> iter:
-        return (self.get(path, **kwargs) for path in paths)
+    def gs(self, *paths: str, **kwargs) -> Generator['KeyPath', None, Any]:
+        """获取多个路径对应的值而不抛出错误"""
+        return (self.g(path, **kwargs) for path in paths)
 
     set = __init__
 
@@ -88,39 +83,32 @@ class KeyPath:
     def set_data(self, data):
         self.set(data=data, sep=self.sep, point=self.point)
 
-    def copy(self, *args, **kwargs) -> 'KeyPath':
-        """不修改实例属性的情况下返回另一个修改特定属性的实例;
-        引用此方法的同理"""
-        self_ = copy.copy(self)
-        self_.set(*args, **kwargs)
-        return self_
-
-    def copy_set_point(self, point) -> 'KeyPath':
+    def cs_point(self, point) -> 'KeyPath':
         return self.copy(data=self.data, point=point, sep=self.sep)
 
-    def copy_set_sep(self, sep: str) -> 'KeyPath':
+    def cs_sep(self, sep: str) -> 'KeyPath':
         return self.copy(data=self.data, sep=sep, point=self.point)
 
-    def copy_set_data(self, data) -> 'KeyPath':
+    def cs_data(self, data) -> 'KeyPath':
         return self.copy(data=data, sep=self.sep, point=self.point)
 
-    def __len__(self):
-        return len(self.v('', attr='data'))
+    def __len__(self) -> int:
+        return len(self.data)
 
-    def __str__(self):
-        return dumps(self.data)
-
-    def __int__(self):
+    def __int__(self) -> int:
         return int(self.data)
+
+    def __eq__(self, value: Union[Dict, List]) -> bool:
+        return self.data == value
 
 
 class IndexPath(KeyPath):
     """如果希望使用字符串作为索引的话，用任意的两个字符包在数字周围;
         直接使用空字符串作为路径，则返回data(除非设置了point)"""
 
-    def characters_inside_the_symbol(self, k: str) -> int or str:
+    def try_num(self, key):
         """尝试使用字符串作为索引"""
         try:
-            return int(k)
+            return int(key)
         except ValueError:
-            return k[1:-1]
+            return key[1:-1]

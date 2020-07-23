@@ -1,9 +1,8 @@
-import datetime
-import json
-import time
+from datetime import datetime
 from typing import Generator, Any
 
 from data_sousa import KeyPath
+from data_sousa.sousa_tool import timestamp
 
 
 class Album:
@@ -22,7 +21,7 @@ class Album:
 
     def artists_iter(self) -> Generator[KeyPath, Any, None]:
         """迭代专辑的所有歌手信息"""
-        return (self.artists(i) for i in range(len(self.path.get('artists'))))
+        return (self.artists(i) for i in range(len(self.path.g('artists'))))
 
     def id(self) -> KeyPath:
         """专辑ID"""
@@ -48,14 +47,9 @@ class Album:
         """发布时间的时间戳"""
         return self.path.v('publishTime')
 
-    def pub_date(self, time_zone_info=None) -> datetime.datetime:
+    def pub_date(self, time_zone_info=None) -> datetime:
         """发布时间，返回datetime实例"""
-        time_tuple = json.loads(
-            time.strftime('["%Y", "%m", "%d", "%H", "%M", "%S"]',
-                          time.localtime(self.pub_time().data / 1000)
-                          )
-        )
-        return datetime.datetime(*(int(n) for n in time_tuple), tzinfo=time_zone_info)
+        return timestamp(int(self.pub_time()) / 1000, time_zone_info)
 
     def company(self) -> KeyPath:
         """发行商"""
@@ -79,8 +73,8 @@ class Album:
 
     def song(self, i: int = 0) -> KeyPath:
         """返回专辑指定位置单曲"""
-        return self.path.copy_set_point('').v(f'songs/[{i}]')
+        return self.path.cs_point('').v(f'songs/[{i}]')
 
     def song_iter(self) -> Generator['KeyPath', Any, None]:
         """返回专辑所有单曲"""
-        return (self.song(i) for i in range(self.path.get('size').data))
+        return (self.song(i) for i in range(self.path.g('size').data))

@@ -81,7 +81,7 @@ def format_fn(fn):
 
 
 def i63lrc(lrc_dict):
-    status = lrc_dict.get
+    status = lrc_dict.g
     if status('nolyric') or status('uncollected') or status('needDesc'):
         return True
     return False
