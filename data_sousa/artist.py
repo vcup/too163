@@ -61,7 +61,7 @@ class ArtistAlbum(Artist):
 
     def album(self, i: int = 0) -> KeyPath:
         path = self.path.cs_point('')
-        return path.v(f'hotAlbums/{i}')
+        return path.v(f'hotAlbums/[{i}]')
 
     def album_iter(self) -> Generator[KeyPath, Any, None]:
         return (self.album(i) for i in range(len(self.album_len())))
@@ -76,10 +76,10 @@ class ArtistMv:
         self.more = data.get('hasMore')
 
     def mv(self, i: int = 0) -> KeyPath:
-        return self.path.v(f'mvs/{i}')
+        return self.path.v(f'mvs/[{i}]')
 
     def mv_iter(self) -> Generator[KeyPath, Any, None]:
         return (self.mv(i) for i in range(self.len))
 
     def time(self) -> datetime:
-        return timestamp(self.path.v('time', attr='data'))
+        return timestamp(self.path.v('time', attr='data').data)

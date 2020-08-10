@@ -9,7 +9,7 @@ class KeyPath:
     up_path_bol是上一层路径的标识符，默认为'..'，遇到该符号则在该符号前面一个路径重新开始
     attr是最后获取的数据的期望属性，调用方法时传入会被覆盖"""
 
-    def __init__(self, data: Union[List, Dict],
+    def __init__(self, data: Union[List, Dict, Any],
                  sep: str = '/', point: str = '', up_path_bol: str = '..', attr: str = ''):
         self.data = data
         self.sep = sep
@@ -23,11 +23,11 @@ class KeyPath:
         return self_copy
 
     def split_path(self, path: str) -> Iterator[Union[int, str]]:
-        """对传入的path切割，并在前面加上point切割后的部分"""
+        """在 point切割后的位置对传入的 path 切割"""
         key_list = self.point.split(self.sep) + path.split(self.sep)
         try:
             index = key_list.index(self.up)
-            del key_list[index-1:index+1]
+            del key_list[index - 1:index + 1]
         except ValueError:
             pass
         return [self.try_num(key) for key in key_list]
@@ -45,7 +45,7 @@ class KeyPath:
         for key in key_list:
             try:
                 data = data[key]
-            except KeyError:
+            except (KeyError, TypeError):
                 if key == '':
                     continue
         return self.copy(data)
@@ -93,7 +93,13 @@ class KeyPath:
         return self.copy(data=data, sep=self.sep, point=self.point)
 
     def __len__(self) -> int:
-        return len(self.data)
+        try:
+            return len(self.data)
+        except TypeError:
+            return 0
+
+    def __str__(self) -> Union[str, int]:
+        return self.data
 
     def __int__(self) -> int:
         return int(self.data)
